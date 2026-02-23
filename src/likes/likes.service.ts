@@ -1,0 +1,103 @@
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+import { NotificationsService } from '../notifications/notifications.service';
+
+/**
+ * Service for toggling and checking post likes.
+ * Creates notifications for post owners on new likes.
+ */
+@Injectable()
+export class LikesService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly notificationsService: NotificationsService,
+  ) {}
+
+  /**
+   * Toggle like/unlike on a post. Sends notification to post owner on like.
+   * @param postId - The post to like/unlike
+   * @param userId - The liking user's ID
+   * @returns `{ liked: boolean }`
+   * @throws NotFoundException if post not found
+   */
+  async toggle(postId: string, userId: string) {
+    const post = await this.prisma.post.findUnique({ where: { id: postId } });
+
+    if (!post) {
+      throw new NotFoundException('Post not found');
+    }
+
+    const existingLike = await this.prisma.like.findUnique({
+      where: {
+        postId_userId: {
+          postId,
+          userId,
+        },
+      },
+    });
+
+    if (existingLike) {
+      // Unlike
+      await this.prisma.like.delete({ where: { id: existingLike.id } });
+      return { liked: false };
+    } else {
+      // Like
+      await this.prisma.like.create({
+        data: {
+          postId,
+          userId,
+        },
+      });
+
+      // Create notification for post owner
+      if (post.userId !== userId) {
+        await this.notificationsService.create({
+          recipientId: post.userId,
+          senderId: userId,
+          type: 'LIKE',
+          content: 'liked your post',
+          postId: post.id,
+        });
+      }
+
+      return { liked: true };
+    }
+  }
+
+  /**
+   * Check whether a user has liked a specific post.
+   * @param postId - The post ID
+   * @param userId - The user's ID
+   * @returns `{ liked: boolean }`
+   */
+  async checkLike(postId: string, userId: string) {
+    const like = await this.prisma.like.findUnique({
+      where: {
+        postId_userId: {
+          postId,
+          userId,
+        },
+      },
+    });
+
+    return { liked: !!like };
+  }
+
+  /**
+   * Get all users who have liked a specific post.
+   * @param postId - The post ID
+   * @returns Array of users with profiles
+   */
+  async getLikesByPost(postId: string) {
+    const likes = await this.prisma.like.findMany({
+      where: { postId },
+      include: {
+        user: {
+          include: { profile: true },
+        },
+      },
+    });
+
+    return likes.map((like) => like.user);
+  }
+}

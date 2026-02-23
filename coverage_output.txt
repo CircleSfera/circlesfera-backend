@@ -1,0 +1,185 @@
+
+ RUN  v3.0.5 /Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend
+      Coverage enabled with v8
+
+ ✓ src/comments/comments.service.spec.ts (7 tests) 10ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  23:41:06
+   Duration  1.17s (transform 49ms, setup 0ms, collect 620ms, tests 10ms, environment 0ms, prepare 54ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |    5.07 |    16.78 |    8.05 |    5.07 |                   
+ ...esfera-backend |       0 |        0 |       0 |       0 |                   
+  check-user.ts    |       0 |        0 |       0 |       0 | 1-35              
+  ...nt.config.mjs |       0 |        0 |       0 |       0 | 1-34              
+  prisma.config.ts |       0 |        0 |       0 |       0 | 1-10              
+  seed-audio.ts    |       0 |        0 |       0 |       0 | 1-60              
+  vitest.config.ts |       0 |        0 |       0 |       0 | 1-22              
+  ...e2e.config.ts |       0 |        0 |       0 |       0 | 1-18              
+ ...backend/prisma |       0 |        0 |       0 |       0 |                   
+  seed.ts          |       0 |        0 |       0 |       0 | 1-167             
+ ...ra-backend/src |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-14              
+  app.module.ts    |       0 |        0 |       0 |       0 | 1-114             
+  app.service.ts   |       0 |        0 |       0 |       0 | 1-10              
+  main.ts          |       0 |        0 |       0 |       0 | 1-104             
+ ...backend/src/ai |       0 |        0 |       0 |       0 |                   
+  ai.module.ts     |       0 |        0 |       0 |       0 | 1-15              
+  ai.service.ts    |       0 |        0 |       0 |       0 | 1-89              
+ .../ai/processors |       0 |        0 |       0 |       0 |                   
+  ai.processor.ts  |       0 |        0 |       0 |       0 | 1-55              
+ ...kend/src/audio |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-49              
+  audio.module.ts  |       0 |        0 |       0 |       0 | 1-12              
+  audio.service.ts |       0 |        0 |       0 |       0 | 1-62              
+ .../src/audio/dto |       0 |        0 |       0 |       0 |                   
+  ...-audio.dto.ts |       0 |        0 |       0 |       0 | 1-20              
+ ...ckend/src/auth |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-148             
+  auth.module.ts   |       0 |        0 |       0 |       0 | 1-15              
+  auth.service.ts  |       0 |        0 |       0 |       0 | 1-367             
+ ...uth/decorators |       0 |        0 |       0 |       0 |                   
+  ....decorator.ts |       0 |        0 |       0 |       0 | 1-18              
+ ...d/src/auth/dto |       0 |        0 |       0 |       0 |                   
+  index.ts         |       0 |        0 |       0 |       0 | 1-6               
+  login.dto.ts     |       0 |        0 |       0 |       0 | 1-9               
+  ...-token.dto.ts |       0 |        0 |       0 |       0 | 1-6               
+  register.dto.ts  |       0 |        0 |       0 |       0 | 1-18              
+  ...-reset.dto.ts |       0 |        0 |       0 |       0 | 1-7               
+  ...ssword.dto.ts |       0 |        0 |       0 |       0 | 1-12              
+  ...-email.dto.ts |       0 |        0 |       0 |       0 | 1-7               
+ ...rc/auth/guards |       0 |        0 |       0 |       0 |                   
+  admin.guard.ts   |       0 |        0 |       0 |       0 | 1-23              
+  ...auth.guard.ts |       0 |        0 |       0 |       0 | 1-5               
+  ...onal.guard.ts |       0 |        0 |       0 |       0 | 1-12              
+ ...c/auth/passkey |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-67              
+  ...key.module.ts |       0 |        0 |       0 |       0 | 1-13              
+  ...ey.service.ts |       0 |        0 |       0 |       0 | 1-311             
+ ...th/passkey/dto |       0 |        0 |       0 |       0 |                   
+  passkey.dto.ts   |       0 |        0 |       0 |       0 | 1-17              
+ ...uth/strategies |       0 |        0 |       0 |       0 |                   
+  jwt.strategy.ts  |       0 |        0 |       0 |       0 | 1-60              
+ .../src/bookmarks |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-61              
+  ...rks.module.ts |       0 |        0 |       0 |       0 | 1-10              
+  ...ks.service.ts |       0 |        0 |       0 |       0 | 1-270             
+ ...ckend/src/chat |    6.22 |       25 |    9.09 |    6.22 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-99              
+  chat.module.ts   |       0 |        0 |       0 |       0 | 1-25              
+  chat.service.ts  |    7.95 |       50 |   11.11 |    7.95 | ...51-379,389-420 
+ ...d/src/chat/dto |       0 |        0 |       0 |       0 |                   
+  ...-group.dto.ts |       0 |        0 |       0 |       0 | 1-21              
+  ...essage.dto.ts |       0 |        0 |       0 |       0 | 1-31              
+ .../close-friends |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-27              
+  ...nds.module.ts |       0 |        0 |       0 |       0 | 1-10              
+  ...ds.service.ts |       0 |        0 |       0 |       0 | 1-71              
+ ...rc/collections |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-58              
+  ...ons.module.ts |       0 |        0 |       0 |       0 | 1-12              
+  ...ns.service.ts |       0 |        0 |       0 |       0 | 1-147             
+ ...d/src/comments |   77.12 |    78.94 |   71.42 |   77.12 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-52              
+  ...nts.module.ts |       0 |        0 |       0 |       0 | 1-11              
+  ...ts.service.ts |   97.97 |    88.23 |     100 |   97.97 | 1,186-187         
+ ...c/comments/dto |       0 |        0 |       0 |       0 |                   
+  ...omment.dto.ts |       0 |        0 |       0 |       0 | 1-19              
+ ...ommon/adapters |       0 |        0 |       0 |       0 |                   
+  ...io.adapter.ts |       0 |        0 |       0 |       0 | 1-39              
+ ...c/common/cache |       0 |        0 |       0 |       0 |                   
+  cache.module.ts  |       0 |        0 |       0 |       0 | 1-22              
+ .../common/config |   41.42 |        0 |       0 |   41.42 |                   
+  cookie.config.ts |   96.66 |      100 |       0 |   96.66 | 1                 
+  csrf.config.ts   |       0 |        0 |       0 |       0 | 1-46              
+ ...rc/common/csrf |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-12              
+ ...src/common/dto |   86.95 |       50 |   33.33 |   86.95 |                   
+  ...nation.dto.ts |   86.95 |       50 |   33.33 |   86.95 | 1,12-16           
+ ...common/filters |       0 |        0 |       0 |       0 |                   
+  ...ons.filter.ts |       0 |        0 |       0 |       0 | 1-78              
+ ...c/common/utils |       0 |        0 |       0 |       0 |                   
+  ...ent-parser.ts |       0 |        0 |       0 |       0 | 1-15              
+ ...kend/src/email |       0 |        0 |       0 |       0 |                   
+  email.module.ts  |       0 |        0 |       0 |       0 | 1-8               
+  email.service.ts |       0 |        0 |       0 |       0 | 1-93              
+ ...nd/src/follows |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-95              
+  ...ows.module.ts |       0 |        0 |       0 |       0 | 1-11              
+  ...ws.service.ts |       0 |        0 |       0 |       0 | 1-378             
+ ...src/highlights |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-54              
+  ...hts.module.ts |       0 |        0 |       0 |       0 | 1-9               
+  ...ts.service.ts |       0 |        0 |       0 |       0 | 1-116             
+ ...highlights/dto |       0 |        0 |       0 |       0 |                   
+  ...hlight.dto.ts |       0 |        0 |       0 |       0 | 1-14              
+  ...hlight.dto.ts |       0 |        0 |       0 |       0 | 1-4               
+ ...ights/entities |       0 |        0 |       0 |       0 |                   
+  ...ght.entity.ts |       0 |        0 |       0 |       0 | 1                 
+ ...kend/src/likes |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-30              
+  likes.module.ts  |       0 |        0 |       0 |       0 | 1-11              
+  likes.service.ts |       0 |        0 |       0 |       0 | 1-85              
+ .../notifications |   16.27 |       25 |   11.11 |   16.27 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-44              
+  ...ons.module.ts |       0 |        0 |       0 |       0 | 1-10              
+  ...ns.service.ts |   24.13 |       50 |   14.28 |   24.13 | ...,87-92,104-126 
+ ...kend/src/posts |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-146             
+  posts.module.ts  |       0 |        0 |       0 |       0 | 1-14              
+  posts.service.ts |       0 |        0 |       0 |       0 | 1-607             
+ .../src/posts/dto |       0 |        0 |       0 |       0 |                   
+  ...e-post.dto.ts |       0 |        0 |       0 |       0 | 1-69              
+  ...-query.dto.ts |       0 |        0 |       0 |       0 | 1-9               
+  ...e-post.dto.ts |       0 |        0 |       0 |       0 | 1-7               
+ ...end/src/prisma |    42.3 |    33.33 |      20 |    42.3 |                   
+  prisma.module.ts |       0 |        0 |       0 |       0 | 1-9               
+  ...ma.service.ts |   52.38 |       50 |      25 |   52.38 | ...20,24-25,29-30 
+ ...d/src/profiles |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-71              
+  ...les.module.ts |       0 |        0 |       0 |       0 | 1-10              
+  ...es.service.ts |       0 |        0 |       0 |       0 | 1-208             
+ ...c/profiles/dto |       0 |        0 |       0 |       0 |                   
+  ...rofile.dto.ts |       0 |        0 |       0 |       0 | 1-40              
+ ...nd/src/reports |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-52              
+  ...rts.module.ts |       0 |        0 |       0 |       0 | 1-12              
+  ...ts.service.ts |       0 |        0 |       0 |       0 | 1-52              
+ ...rc/reports/dto |       0 |        0 |       0 |       0 |                   
+  ...report.dto.ts |       0 |        0 |       0 |       0 | 1-31              
+ ...end/src/search |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-53              
+  search.module.ts |       0 |        0 |       0 |       0 | 1-12              
+  ...ch.service.ts |       0 |        0 |       0 |       0 | 1-219             
+ ...end/src/socket |   16.48 |    66.66 |    9.09 |   16.48 |                   
+  app.gateway.ts   |   18.45 |      100 |      10 |   18.45 | ...99-207,214-237 
+  socket.module.ts |       0 |        0 |       0 |       0 | 1-24              
+ ...nd/src/stories |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-90              
+  ...ies.module.ts |       0 |        0 |       0 |       0 | 1-9               
+  ...es.service.ts |       0 |        0 |       0 |       0 | 1-296             
+ ...rc/stories/dto |       0 |        0 |       0 |       0 |                   
+  ...-story.dto.ts |       0 |        0 |       0 |       0 | 1-17              
+  ...action.dto.ts |       0 |        0 |       0 |       0 | 1-7               
+ ...kend/src/types |       0 |        0 |       0 |       0 |                   
+  prisma.ts        |       0 |        0 |       0 |       0 |                   
+ ...nd/src/uploads |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-45              
+  ...ads.module.ts |       0 |        0 |       0 |       0 | 1-28              
+  ...ds.service.ts |       0 |        0 |       0 |       0 | 1-34              
+ ...ads/interfaces |       0 |       50 |      50 |       0 |                   
+  ....interface.ts |       0 |        0 |       0 |       0 | 1-20              
+  ....interface.ts |       0 |        0 |       0 |       0 |                   
+ ...oads/providers |       0 |        0 |       0 |       0 |                   
+  ...y.provider.ts |       0 |        0 |       0 |       0 | 1-58              
+  ...l.provider.ts |       0 |        0 |       0 |       0 | 1-69              
+ ...kend/src/users |       0 |        0 |       0 |       0 |                   
+  ...controller.ts |       0 |        0 |       0 |       0 | 1-45              
+  users.module.ts  |       0 |        0 |       0 |       0 | 1-9               
+  users.service.ts |       0 |        0 |       0 |       0 | 1-129             
+-------------------|---------|----------|---------|---------|-------------------

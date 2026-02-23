@@ -1,0 +1,2005 @@
+
+> circlesfera-backend@1.0.0 test:e2e
+> vitest run --config ./vitest.e2e.config.ts
+
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90m/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend[39m
+
+[90mstdout[2m | test/app.e2e-spec.ts[2m > [22m[2mAuthentication (e2e)
+[22m[39mPrismaService keys: [
+  [32m'_originalClient'[39m,
+  [32m'_runtimeDataModel'[39m,
+  [32m'_requestHandler'[39m,
+  [32m'_connectionPromise'[39m,
+  [32m'_disconnectionPromise'[39m,
+  [32m'_engineConfig'[39m,
+  [32m'_accelerateEngineConfig'[39m,
+  [32m'_clientVersion'[39m,
+  [32m'_errorFormat'[39m,
+  [32m'_tracingHelper'[39m,
+  [32m'_previewFeatures'[39m,
+  [32m'_activeProvider'[39m,
+  [32m'_globalOmit'[39m,
+  [32m'_extensions'[39m,
+  [32m'_engine'[39m,
+  [32m'_appliedParent'[39m,
+  [32m'_createPrismaPromise'[39m,
+  [32m'$extends'[39m,
+  [32m'constructor'[39m,
+  [32m'onModuleInit'[39m,
+  [32m'onModuleDestroy'[39m,
+  [32m'user'[39m,
+  [32m'refreshToken'[39m,
+  [32m'profile'[39m,
+  [32m'post'[39m,
+  [32m'postTag'[39m,
+  [32m'bookmark'[39m,
+  [32m'collection'[39m,
+  [32m'postMedia'[39m,
+  [32m'story'[39m,
+  [32m'storyView'[39m,
+  [32m'storyReaction'[39m,
+  [32m'highlight'[39m,
+  [32m'highlightStory'[39m,
+  [32m'closeFriend'[39m,
+  [32m'comment'[39m,
+  [32m'like'[39m,
+  [32m'follow'[39m,
+  [32m'block'[39m,
+  [32m'notification'[39m,
+  [32m'conversation'[39m,
+  [32m'participant'[39m,
+  [32m'message'[39m,
+  [32m'messageReaction'[39m,
+  [32m'hashtag'[39m,
+  [32m'postHashtag'[39m,
+  [32m'postEmbedding'[39m,
+  [32m'passkey'[39m,
+  [32m'report'[39m,
+  [32m'searchHistory'[39m,
+  [32m'audio'[39m,
+  [32m'$parent'[39m
+]
+Prisma User property: {
+  findUnique: [36m[Function (anonymous)][39m,
+  findUniqueOrThrow: [36m[Function (anonymous)][39m,
+  findFirst: [36m[Function (anonymous)][39m,
+  findFirstOrThrow: [36m[Function (anonymous)][39m,
+  findMany: [36m[Function (anonymous)][39m,
+  create: [36m[Function (anonymous)][39m,
+  createMany: [36m[Function (anonymous)][39m,
+  createManyAndReturn: [36m[Function (anonymous)][39m,
+  update: [36m[Function (anonymous)][39m,
+  updateMany: [36m[Function (anonymous)][39m,
+  updateManyAndReturn: [36m[Function (anonymous)][39m,
+  upsert: [36m[Function (anonymous)][39m,
+  delete: [36m[Function (anonymous)][39m,
+  deleteMany: [36m[Function (anonymous)][39m,
+  groupBy: [36m[Function (anonymous)][39m,
+  count: [36m[Function (anonymous)][39m,
+  aggregate: [36m[Function (anonymous)][39m,
+  findRaw: [36m[Function (anonymous)][39m,
+  aggregateRaw: [36m[Function (anonymous)][39m,
+  fields: {},
+  name: [32m'User'[39m,
+  [32m'$name'[39m: [32m'User'[39m,
+  [32m'$parent'[39m: {
+    _originalClient: {
+      _originalClient: [36m[Object][39m,
+      _runtimeDataModel: [36m[Object][39m,
+      _requestHandler: [36m[zr [RequestHandler]][39m,
+      _connectionPromise: [90mundefined[39m,
+      _disconnectionPromise: [90mundefined[39m,
+      _engineConfig: [36m[Object][39m,
+      _accelerateEngineConfig: [36m[Object][39m,
+      _clientVersion: [32m'7.4.0'[39m,
+      _errorFormat: [32m'colorless'[39m,
+      _tracingHelper: di {},
+      _previewFeatures: [],
+      _activeProvider: [32m'postgresql'[39m,
+      _globalOmit: [90mundefined[39m,
+      _extensions: [36m[e][39m,
+      _engine: [36m[qt][39m,
+      _appliedParent: [36m[Object][39m,
+      _createPrismaPromise: [36m[Function (anonymous)][39m,
+      [32m'$extends'[39m: [36m[Function: Uo][39m
+    },
+    _runtimeDataModel: { models: [36m[Object][39m, enums: {}, types: {} },
+    _requestHandler: zr [RequestHandler] {
+      client: [36m[Object][39m,
+      dataloader: [36m[Hr [DataLoader]][39m,
+      logEmitter: [36m[EventEmitter][39m
+    },
+    _connectionPromise: [90mundefined[39m,
+    _disconnectionPromise: [90mundefined[39m,
+    _engineConfig: {
+      enableDebugLogs: [33mfalse[39m,
+      logLevel: [90mundefined[39m,
+      logQueries: [90mundefined[39m,
+      compilerWasm: [36m[Object][39m,
+      clientVersion: [32m'7.4.0'[39m,
+      previewFeatures: [],
+      activeProvider: [32m'postgresql'[39m,
+      inlineSchema: [32m'// This is your Prisma schema file,\n'[39m +
+        [32m'// learn more about it in the docs: https://pris.ly/d/prisma-schema\n'[39m +
+        [32m'\n'[39m +
+        [32m'generator client {\n'[39m +
+        [32m'  provider        = "prisma-client-js"\n'[39m +
+        [32m'  engineType      = "library"\n'[39m +
+        [32m'  previewFeatures = []\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'datasource db {\n'[39m +
+        [32m'  provider = "postgresql"\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model User {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  email     String   @unique\n'[39m +
+        [32m'  password  String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Account Status\n'[39m +
+        [32m'  isActive  Boolean   @default(true)\n'[39m +
+        [32m'  deletedAt DateTime?\n'[39m +
+        [32m'\n'[39m +
+        [32m'  profile           Profile?\n'[39m +
+        [32m'  posts             Post[]\n'[39m +
+        [32m'  stories           Story[]\n'[39m +
+        [32m'  comments          Comment[]\n'[39m +
+        [32m'  likes             Like[]\n'[39m +
+        [32m'  followers         Follow[]       @relation("UserFollowing")\n'[39m +
+        [32m'  following         Follow[]       @relation("UserFollowers")\n'[39m +
+        [32m'  notifications     Notification[] @relation("NotificationRecipient")\n'[39m +
+        [32m'  sentNotifications Notification[] @relation("NotificationSender")\n'[39m +
+        [32m'  refreshTokens     RefreshToken[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Chat relations\n'[39m +
+        [32m'  participants     Participant[]\n'[39m +
+        [32m'  messages         Message[]\n'[39m +
+        [32m'  messageReactions MessageReaction[] // New: User reactions to messages\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Block relations\n'[39m +
+        [32m'  blockedBy Block[] @relation("BlockedBy")\n'[39m +
+        [32m'  blocking  Block[] @relation("Blocking")\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Bookmarks\n'[39m +
+        [32m'  bookmarks   Bookmark[]\n'[39m +
+        [32m'  collections Collection[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Highlights\n'[39m +
+        [32m'  highlights Highlight[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Passkeys for WebAuthn\n'[39m +
+        [32m'  passkeys         Passkey[]\n'[39m +
+        [32m'  currentChallenge String? // Temporary storage for registration/auth challenge\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Close Friends\n'[39m +
+        [32m'  closeFriends CloseFriend[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Story Views\n'[39m +
+        [32m'  storyViews StoryView[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Story Reactions\n'[39m +
+        [32m'  storyReactions StoryReaction[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Tagged in posts\n'[39m +
+        [32m'  taggedPosts PostTag[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Reports\n'[39m +
+        [32m'  reports Report[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Search History\n'[39m +
+        [32m'  searchHistory SearchHistory[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Activity Status\n'[39m +
+        [32m'  isOnline   Boolean   @default(false)\n'[39m +
+        [32m'  lastSeenAt DateTime?\n'[39m +
+        [32m'\n'[39m +
+        [32m'  role Role @default(USER)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Verification and Reset Tokens\n'[39m +
+        [32m'  emailVerified     DateTime?\n'[39m +
+        [32m'  verificationToken String?   @unique\n'[39m +
+        [32m'  resetToken        String?   @unique\n'[39m +
+        [32m'  resetTokenExpires DateTime?\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([isOnline])\n'[39m +
+        [32m'  @@index([verificationToken])\n'[39m +
+        [32m'  @@index([resetToken])\n'[39m +
+        [32m'  @@map("users")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'enum Role {\n'[39m +
+        [32m'  USER\n'[39m +
+        [32m'  ADMIN\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'enum PostType {\n'[39m +
+        [32m'  POST\n'[39m +
+        [32m'  FRAME\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model RefreshToken {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  token     String   @unique\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  expiresAt DateTime\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("refresh_tokens")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Profile {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String   @unique\n'[39m +
+        [32m'  username  String   @unique\n'[39m +
+        [32m'  fullName  String?\n'[39m +
+        [32m'  bio       String?\n'[39m +
+        [32m'  avatar    String?\n'[39m +
+        [32m'  website   String?\n'[39m +
+        [32m'  location  String?\n'[39m +
+        [32m'  isPrivate Boolean  @default(false)\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([username])\n'[39m +
+        [32m'  @@map("profiles")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Post {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  caption   String?\n'[39m +
+        [32m'  mediaUrl  String? // Deprecated: Kept for backward compatibility\n'[39m +
+        [32m'  mediaType String? // Deprecated: Kept for backward compatibility\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  media         PostMedia[] // New: Support for multiple media files\n'[39m +
+        [32m'  comments      Comment[]\n'[39m +
+        [32m'  likes         Like[]\n'[39m +
+        [32m'  bookmarks     Bookmark[]\n'[39m +
+        [32m'  hashtags      PostHashtag[]\n'[39m +
+        [32m'  notifications Notification[]\n'[39m +
+        [32m'  embedding     PostEmbedding? // New: AI Embedding support\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // New: Sharing in Chat\n'[39m +
+        [32m'  sharedInMessages Message[] @relation("SharedPosts")\n'[39m +
+        [32m'\n'[39m +
+        [32m'  tags PostTag[] // New: Tagged users\n'[39m +
+        [32m'\n'[39m +
+        [32m'  location        String?\n'[39m +
+        [32m'  hideLikes       Boolean @default(false)\n'[39m +
+        [32m'  turnOffComments Boolean @default(false)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  type PostType @default(POST)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  audioId String?\n'[39m +
+        [32m'  audio   Audio?  @relation(fields: [audioId], references: [id], onDelete: SetNull)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId, type, createdAt])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@index([createdAt])\n'[39m +
+        [32m'  @@index([type])\n'[39m +
+        [32m'  @@map("posts")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model PostTag {\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  x         Float? // Optional: X coordinate (0-1)\n'[39m +
+        [32m'  y         Float? // Optional: Y coordinate (0-1)\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([postId, userId])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("post_tags")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Bookmark {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  collectionId String?\n'[39m +
+        [32m'  collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: SetNull)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([userId, postId])\n'[39m +
+        [32m'  @@index([userId, createdAt])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@index([postId])\n'[39m +
+        [32m'  @@index([collectionId])\n'[39m +
+        [32m'  @@map("bookmarks")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Collection {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  name      String\n'[39m +
+        [32m'  coverUrl  String?\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  bookmarks Bookmark[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("collections")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model PostMedia {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  url       String\n'[39m +
+        [32m'  type      String   @default("image") // "image" | "video"\n'[39m +
+        [32m'  order     Int      @default(0) // For carousel ordering\n'[39m +
+        [32m'  filter    String? // Store filter ID (e.g. "sepia", "clarendon")\n'[39m +
+        [32m'  altText   String? // Accessibility text\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([postId])\n'[39m +
+        [32m'  @@map("post_media")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Story {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  mediaUrl  String\n'[39m +
+        [32m'  mediaType String   @default("image") // image or video\n'[39m +
+        [32m'  expiresAt DateTime\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // New: Close Friends support\n'[39m +
+        [32m'  isCloseFriendsOnly Boolean @default(false)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  audioId String?\n'[39m +
+        [32m'  audio   Audio?  @relation(fields: [audioId], references: [id], onDelete: SetNull)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Relation to highlights\n'[39m +
+        [32m'  highlightStories HighlightStory[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Views\n'[39m +
+        [32m'  views StoryView[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // New: Story Reactions\n'[39m +
+        [32m'  reactions StoryReaction[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId, createdAt])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@index([expiresAt])\n'[39m +
+        [32m'  @@index([createdAt])\n'[39m +
+        [32m'  @@map("stories")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model StoryView {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  storyId   String\n'[39m +
+        [32m'  viewerId  String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  story  Story @relation(fields: [storyId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  viewer User  @relation(fields: [viewerId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([storyId, viewerId]) // One view per user per story\n'[39m +
+        [32m'  @@index([storyId])\n'[39m +
+        [32m'  @@map("story_views")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model StoryReaction {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  storyId   String\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  reaction  String // e.g. "❤️", "🔥", "😂"\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  story Story @relation(fields: [storyId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([storyId, userId])\n'[39m +
+        [32m'  @@index([storyId])\n'[39m +
+        [32m'  @@map("story_reactions")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Highlight {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  title     String\n'[39m +
+        [32m'  coverUrl  String? // Optional custom cover, otherwise use first story\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user    User             @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  stories HighlightStory[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("highlights")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model HighlightStory {\n'[39m +
+        [32m'  id          String   @id @default(uuid())\n'[39m +
+        [32m'  highlightId String\n'[39m +
+        [32m'  storyId     String\n'[39m +
+        [32m'  createdAt   DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  highlight Highlight @relation(fields: [highlightId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  story     Story     @relation(fields: [storyId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([highlightId, storyId])\n'[39m +
+        [32m'  @@map("highlight_stories")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model CloseFriend {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  friendId  String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m"  // We don't necessarily need a strict relation to the friend User model if we just store ID, \n"[39m +
+        [32m"  // but let's keep it simple for now and just store the ID or relation if needed. \n"[39m +
+        [32m"  // Ideally, it's a relation to User.\n"[39m +
+        [32m"  // dependent on implementation, but let's assume friendId is a valid userId.\n"[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([userId, friendId])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("close_friends")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Comment {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  content   String\n'[39m +
+        [32m'  mediaUrl  String?\n'[39m +
+        [32m'  mediaType String? // "image", "video", "file"\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Self-relation for nested comments\n'[39m +
+        [32m'  parentId String?\n'[39m +
+        [32m'  parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  replies  Comment[] @relation("CommentReplies")\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([postId, createdAt])\n'[39m +
+        [32m'  @@index([postId])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@index([parentId])\n'[39m +
+        [32m'  @@index([createdAt])\n'[39m +
+        [32m'  @@map("comments")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Like {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([postId, userId])\n'[39m +
+        [32m'  @@index([userId, createdAt])\n'[39m +
+        [32m'  @@index([postId])\n'[39m +
+        [32m'  @@index('[39m... 6285 more characters,
+      tracingHelper: di {},
+      transactionOptions: [36m[Object][39m,
+      logEmitter: [36m[EventEmitter][39m,
+      adapter: [36m[PrismaPgAdapterFactory][39m,
+      accelerateUrl: [90mundefined[39m,
+      sqlCommenters: [90mundefined[39m,
+      parameterizationSchema: [36m[Object][39m,
+      runtimeDataModel: [36m[Object][39m
+    },
+    _accelerateEngineConfig: { accelerateUtils: [36m[Object][39m },
+    _clientVersion: [32m'7.4.0'[39m,
+    _errorFormat: [32m'colorless'[39m,
+    _tracingHelper: di {},
+    _previewFeatures: [],
+    _activeProvider: [32m'postgresql'[39m,
+    _globalOmit: [90mundefined[39m,
+    _extensions: e { head: [90mundefined[39m },
+    _engine: qt {
+      name: [32m'ClientEngine'[39m,
+      config: [36m[Object][39m,
+      datamodel: [32m'// This is your Prisma schema file,\n'[39m +
+        [32m'// learn more about it in the docs: https://pris.ly/d/prisma-schema\n'[39m +
+        [32m'\n'[39m +
+        [32m'generator client {\n'[39m +
+        [32m'  provider        = "prisma-client-js"\n'[39m +
+        [32m'  engineType      = "library"\n'[39m +
+        [32m'  previewFeatures = []\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'datasource db {\n'[39m +
+        [32m'  provider = "postgresql"\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model User {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  email     String   @unique\n'[39m +
+        [32m'  password  String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Account Status\n'[39m +
+        [32m'  isActive  Boolean   @default(true)\n'[39m +
+        [32m'  deletedAt DateTime?\n'[39m +
+        [32m'\n'[39m +
+        [32m'  profile           Profile?\n'[39m +
+        [32m'  posts             Post[]\n'[39m +
+        [32m'  stories           Story[]\n'[39m +
+        [32m'  comments          Comment[]\n'[39m +
+        [32m'  likes             Like[]\n'[39m +
+        [32m'  followers         Follow[]       @relation("UserFollowing")\n'[39m +
+        [32m'  following         Follow[]       @relation("UserFollowers")\n'[39m +
+        [32m'  notifications     Notification[] @relation("NotificationRecipient")\n'[39m +
+        [32m'  sentNotifications Notification[] @relation("NotificationSender")\n'[39m +
+        [32m'  refreshTokens     RefreshToken[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Chat relations\n'[39m +
+        [32m'  participants     Participant[]\n'[39m +
+        [32m'  messages         Message[]\n'[39m +
+        [32m'  messageReactions MessageReaction[] // New: User reactions to messages\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Block relations\n'[39m +
+        [32m'  blockedBy Block[] @relation("BlockedBy")\n'[39m +
+        [32m'  blocking  Block[] @relation("Blocking")\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Bookmarks\n'[39m +
+        [32m'  bookmarks   Bookmark[]\n'[39m +
+        [32m'  collections Collection[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Highlights\n'[39m +
+        [32m'  highlights Highlight[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Passkeys for WebAuthn\n'[39m +
+        [32m'  passkeys         Passkey[]\n'[39m +
+        [32m'  currentChallenge String? // Temporary storage for registration/auth challenge\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Close Friends\n'[39m +
+        [32m'  closeFriends CloseFriend[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Story Views\n'[39m +
+        [32m'  storyViews StoryView[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Story Reactions\n'[39m +
+        [32m'  storyReactions StoryReaction[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Tagged in posts\n'[39m +
+        [32m'  taggedPosts PostTag[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Reports\n'[39m +
+        [32m'  reports Report[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Search History\n'[39m +
+        [32m'  searchHistory SearchHistory[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Activity Status\n'[39m +
+        [32m'  isOnline   Boolean   @default(false)\n'[39m +
+        [32m'  lastSeenAt DateTime?\n'[39m +
+        [32m'\n'[39m +
+        [32m'  role Role @default(USER)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Verification and Reset Tokens\n'[39m +
+        [32m'  emailVerified     DateTime?\n'[39m +
+        [32m'  verificationToken String?   @unique\n'[39m +
+        [32m'  resetToken        String?   @unique\n'[39m +
+        [32m'  resetTokenExpires DateTime?\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([isOnline])\n'[39m +
+        [32m'  @@index([verificationToken])\n'[39m +
+        [32m'  @@index([resetToken])\n'[39m +
+        [32m'  @@map("users")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'enum Role {\n'[39m +
+        [32m'  USER\n'[39m +
+        [32m'  ADMIN\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'enum PostType {\n'[39m +
+        [32m'  POST\n'[39m +
+        [32m'  FRAME\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model RefreshToken {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  token     String   @unique\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  expiresAt DateTime\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("refresh_tokens")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Profile {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String   @unique\n'[39m +
+        [32m'  username  String   @unique\n'[39m +
+        [32m'  fullName  String?\n'[39m +
+        [32m'  bio       String?\n'[39m +
+        [32m'  avatar    String?\n'[39m +
+        [32m'  website   String?\n'[39m +
+        [32m'  location  String?\n'[39m +
+        [32m'  isPrivate Boolean  @default(false)\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([username])\n'[39m +
+        [32m'  @@map("profiles")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Post {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  caption   String?\n'[39m +
+        [32m'  mediaUrl  String? // Deprecated: Kept for backward compatibility\n'[39m +
+        [32m'  mediaType String? // Deprecated: Kept for backward compatibility\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  media         PostMedia[] // New: Support for multiple media files\n'[39m +
+        [32m'  comments      Comment[]\n'[39m +
+        [32m'  likes         Like[]\n'[39m +
+        [32m'  bookmarks     Bookmark[]\n'[39m +
+        [32m'  hashtags      PostHashtag[]\n'[39m +
+        [32m'  notifications Notification[]\n'[39m +
+        [32m'  embedding     PostEmbedding? // New: AI Embedding support\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // New: Sharing in Chat\n'[39m +
+        [32m'  sharedInMessages Message[] @relation("SharedPosts")\n'[39m +
+        [32m'\n'[39m +
+        [32m'  tags PostTag[] // New: Tagged users\n'[39m +
+        [32m'\n'[39m +
+        [32m'  location        String?\n'[39m +
+        [32m'  hideLikes       Boolean @default(false)\n'[39m +
+        [32m'  turnOffComments Boolean @default(false)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  type PostType @default(POST)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  audioId String?\n'[39m +
+        [32m'  audio   Audio?  @relation(fields: [audioId], references: [id], onDelete: SetNull)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId, type, createdAt])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@index([createdAt])\n'[39m +
+        [32m'  @@index([type])\n'[39m +
+        [32m'  @@map("posts")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model PostTag {\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  x         Float? // Optional: X coordinate (0-1)\n'[39m +
+        [32m'  y         Float? // Optional: Y coordinate (0-1)\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([postId, userId])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("post_tags")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Bookmark {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  collectionId String?\n'[39m +
+        [32m'  collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: SetNull)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([userId, postId])\n'[39m +
+        [32m'  @@index([userId, createdAt])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@index([postId])\n'[39m +
+        [32m'  @@index([collectionId])\n'[39m +
+        [32m'  @@map("bookmarks")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Collection {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  name      String\n'[39m +
+        [32m'  coverUrl  String?\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  bookmarks Bookmark[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("collections")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model PostMedia {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  url       String\n'[39m +
+        [32m'  type      String   @default("image") // "image" | "video"\n'[39m +
+        [32m'  order     Int      @default(0) // For carousel ordering\n'[39m +
+        [32m'  filter    String? // Store filter ID (e.g. "sepia", "clarendon")\n'[39m +
+        [32m'  altText   String? // Accessibility text\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([postId])\n'[39m +
+        [32m'  @@map("post_media")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Story {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  mediaUrl  String\n'[39m +
+        [32m'  mediaType String   @default("image") // image or video\n'[39m +
+        [32m'  expiresAt DateTime\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // New: Close Friends support\n'[39m +
+        [32m'  isCloseFriendsOnly Boolean @default(false)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  audioId String?\n'[39m +
+        [32m'  audio   Audio?  @relation(fields: [audioId], references: [id], onDelete: SetNull)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Relation to highlights\n'[39m +
+        [32m'  highlightStories HighlightStory[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Views\n'[39m +
+        [32m'  views StoryView[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // New: Story Reactions\n'[39m +
+        [32m'  reactions StoryReaction[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId, createdAt])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@index([expiresAt])\n'[39m +
+        [32m'  @@index([createdAt])\n'[39m +
+        [32m'  @@map("stories")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model StoryView {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  storyId   String\n'[39m +
+        [32m'  viewerId  String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  story  Story @relation(fields: [storyId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  viewer User  @relation(fields: [viewerId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([storyId, viewerId]) // One view per user per story\n'[39m +
+        [32m'  @@index([storyId])\n'[39m +
+        [32m'  @@map("story_views")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model StoryReaction {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  storyId   String\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  reaction  String // e.g. "❤️", "🔥", "😂"\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  story Story @relation(fields: [storyId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([storyId, userId])\n'[39m +
+        [32m'  @@index([storyId])\n'[39m +
+        [32m'  @@map("story_reactions")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Highlight {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  title     String\n'[39m +
+        [32m'  coverUrl  String? // Optional custom cover, otherwise use first story\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user    User             @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  stories HighlightStory[]\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("highlights")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model HighlightStory {\n'[39m +
+        [32m'  id          String   @id @default(uuid())\n'[39m +
+        [32m'  highlightId String\n'[39m +
+        [32m'  storyId     String\n'[39m +
+        [32m'  createdAt   DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  highlight Highlight @relation(fields: [highlightId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  story     Story     @relation(fields: [storyId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([highlightId, storyId])\n'[39m +
+        [32m'  @@map("highlight_stories")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model CloseFriend {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  friendId  String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m"  // We don't necessarily need a strict relation to the friend User model if we just store ID, \n"[39m +
+        [32m"  // but let's keep it simple for now and just store the ID or relation if needed. \n"[39m +
+        [32m"  // Ideally, it's a relation to User.\n"[39m +
+        [32m"  // dependent on implementation, but let's assume friendId is a valid userId.\n"[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([userId, friendId])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@map("close_friends")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Comment {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  content   String\n'[39m +
+        [32m'  mediaUrl  String?\n'[39m +
+        [32m'  mediaType String? // "image", "video", "file"\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'  updatedAt DateTime @updatedAt\n'[39m +
+        [32m'\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  // Self-relation for nested comments\n'[39m +
+        [32m'  parentId String?\n'[39m +
+        [32m'  parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  replies  Comment[] @relation("CommentReplies")\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@index([postId, createdAt])\n'[39m +
+        [32m'  @@index([postId])\n'[39m +
+        [32m'  @@index([userId])\n'[39m +
+        [32m'  @@index([parentId])\n'[39m +
+        [32m'  @@index([createdAt])\n'[39m +
+        [32m'  @@map("comments")\n'[39m +
+        [32m'}\n'[39m +
+        [32m'\n'[39m +
+        [32m'model Like {\n'[39m +
+        [32m'  id        String   @id @default(uuid())\n'[39m +
+        [32m'  postId    String\n'[39m +
+        [32m'  userId    String\n'[39m +
+        [32m'  createdAt DateTime @default(now())\n'[39m +
+        [32m'\n'[39m +
+        [32m'  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n'[39m +
+        [32m'\n'[39m +
+        [32m'  @@unique([postId, userId])\n'[39m +
+        [32m'  @@index([userId, createdAt])\n'[39m +
+        [32m'  @@index([postId])\n'[39m +
+        [32m'  @@index('[39m... 6285 more characters,
+      logEmitter: [36m[EventEmitter][39m,
+      logQueries: [33mfalse[39m,
+      logLevel: [32m'error'[39m,
+      tracingHelper: di {}
+    },
+    _appliedParent: {
+      _originalClient: [36m[Object][39m,
+      _runtimeDataModel: [36m[Object][39m,
+      _requestHandler: [36m[zr [RequestHandler]][39m,
+      _connectionPromise: [90mundefined[39m,
+      _disconnectionPromise: [90mundefined[39m,
+      _engineConfig: [36m[Object][39m,
+      _accelerateEngineConfig: [36m[Object][39m,
+      _clientVersion: [32m'7.4.0'[39m,
+      _errorFormat: [32m'colorless'[39m,
+      _tracingHelper: di {},
+      _previewFeatures: [],
+      _activeProvider: [32m'postgresql'[39m,
+      _globalOmit: [90mundefined[39m,
+      _extensions: [36m[e][39m,
+      _engine: [36m[qt][39m,
+      _appliedParent: [36m[Object][39m,
+      _createPrismaPromise: [36m[Function (anonymous)][39m,
+      [32m'$extends'[39m: [36m[Function: Uo][39m,
+      constructor: [36m[class PrismaService extends t][39m,
+      onModuleInit: [36m[AsyncFunction: onModuleInit][39m,
+      onModuleDestroy: [36m[AsyncFunction: onModuleDestroy][39m,
+      user: [36m[Object][39m,
+      refreshToken: [36m[Object][39m,
+      profile: [36m[Object][39m,
+      post: [36m[Object][39m,
+      postTag: [36m[Object][39m,
+      bookmark: [36m[Object][39m,
+      collection: [36m[Object][39m,
+      postMedia: [36m[Object][39m,
+      story: [36m[Object][39m,
+      storyView: [36m[Object][39m,
+      storyReaction: [36m[Object][39m,
+      highlight: [36m[Object][39m,
+      highlightStory: [36m[Object][39m,
+      closeFriend: [36m[Object][39m,
+      comment: [36m[Object][39m,
+      like: [36m[Object][39m,
+      follow: [36m[Object][39m,
+      block: [36m[Object][39m,
+      notification: [36m[Object][39m,
+      conversation: [36m[Object][39m,
+      participant: [36m[Object][39m,
+      message: [36m[Object][39m,
+      messageReaction: [36m[Object][39m,
+      hashtag: [36m[Object][39m,
+      postHashtag: [36m[Object][39m,
+      postEmbedding: [36m[Object][39m,
+      passkey: [36m[Object][39m,
+      report: [36m[Object][39m,
+      searchHistory: [36m[Object][39m,
+      audio: [36m[Object][39m,
+      [32m'$parent'[39m: [36m[Object][39m,
+      [32mSymbol()[39m: [36m[Object][39m
+    },
+    _createPrismaPromise: [36m[Function (anonymous)][39m,
+    [32m'$extends'[39m: [36m[Function: Uo][39m,
+    constructor: [36m[class PrismaService extends t][39m,
+    onModuleInit: [36m[AsyncFunction: onModuleInit][39m,
+    onModuleDestroy: [36m[AsyncFunction: onModuleDestroy][39m,
+    user: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'User'[39m,
+      [32m'$name'[39m: [32m'User'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    refreshToken: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'RefreshToken'[39m,
+      [32m'$name'[39m: [32m'RefreshToken'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    profile: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Profile'[39m,
+      [32m'$name'[39m: [32m'Profile'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    post: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Post'[39m,
+      [32m'$name'[39m: [32m'Post'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    postTag: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'PostTag'[39m,
+      [32m'$name'[39m: [32m'PostTag'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    bookmark: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Bookmark'[39m,
+      [32m'$name'[39m: [32m'Bookmark'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    collection: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Collection'[39m,
+      [32m'$name'[39m: [32m'Collection'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    postMedia: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'PostMedia'[39m,
+      [32m'$name'[39m: [32m'PostMedia'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    story: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Story'[39m,
+      [32m'$name'[39m: [32m'Story'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    storyView: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'StoryView'[39m,
+      [32m'$name'[39m: [32m'StoryView'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    storyReaction: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'StoryReaction'[39m,
+      [32m'$name'[39m: [32m'StoryReaction'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    highlight: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Highlight'[39m,
+      [32m'$name'[39m: [32m'Highlight'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    highlightStory: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'HighlightStory'[39m,
+      [32m'$name'[39m: [32m'HighlightStory'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    closeFriend: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'CloseFriend'[39m,
+      [32m'$name'[39m: [32m'CloseFriend'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    comment: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Comment'[39m,
+      [32m'$name'[39m: [32m'Comment'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    like: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Like'[39m,
+      [32m'$name'[39m: [32m'Like'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    follow: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Follow'[39m,
+      [32m'$name'[39m: [32m'Follow'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    block: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Block'[39m,
+      [32m'$name'[39m: [32m'Block'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    notification: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Notification'[39m,
+      [32m'$name'[39m: [32m'Notification'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    conversation: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Conversation'[39m,
+      [32m'$name'[39m: [32m'Conversation'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    participant: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Participant'[39m,
+      [32m'$name'[39m: [32m'Participant'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    message: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Message'[39m,
+      [32m'$name'[39m: [32m'Message'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    messageReaction: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'MessageReaction'[39m,
+      [32m'$name'[39m: [32m'MessageReaction'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    hashtag: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Hashtag'[39m,
+      [32m'$name'[39m: [32m'Hashtag'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    postHashtag: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'PostHashtag'[39m,
+      [32m'$name'[39m: [32m'PostHashtag'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    postEmbedding: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'PostEmbedding'[39m,
+      [32m'$name'[39m: [32m'PostEmbedding'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    passkey: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Passkey'[39m,
+      [32m'$name'[39m: [32m'Passkey'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    report: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Report'[39m,
+      [32m'$name'[39m: [32m'Report'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    searchHistory: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'SearchHistory'[39m,
+      [32m'$name'[39m: [32m'SearchHistory'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    audio: {
+      findUnique: [36m[Function (anonymous)][39m,
+      findUniqueOrThrow: [36m[Function (anonymous)][39m,
+      findFirst: [36m[Function (anonymous)][39m,
+      findFirstOrThrow: [36m[Function (anonymous)][39m,
+      findMany: [36m[Function (anonymous)][39m,
+      create: [36m[Function (anonymous)][39m,
+      createMany: [36m[Function (anonymous)][39m,
+      createManyAndReturn: [36m[Function (anonymous)][39m,
+      update: [36m[Function (anonymous)][39m,
+      updateMany: [36m[Function (anonymous)][39m,
+      updateManyAndReturn: [36m[Function (anonymous)][39m,
+      upsert: [36m[Function (anonymous)][39m,
+      delete: [36m[Function (anonymous)][39m,
+      deleteMany: [36m[Function (anonymous)][39m,
+      groupBy: [36m[Function (anonymous)][39m,
+      count: [36m[Function (anonymous)][39m,
+      aggregate: [36m[Function (anonymous)][39m,
+      findRaw: [36m[Function (anonymous)][39m,
+      aggregateRaw: [36m[Function (anonymous)][39m,
+      fields: {},
+      name: [32m'Audio'[39m,
+      [32m'$name'[39m: [32m'Audio'[39m,
+      [32m'$parent'[39m: [36m[Object][39m
+    },
+    [32m'$parent'[39m: {
+      _originalClient: [36m[Object][39m,
+      _runtimeDataModel: [36m[Object][39m,
+      _requestHandler: [36m[zr [RequestHandler]][39m,
+      _connectionPromise: [90mundefined[39m,
+      _disconnectionPromise: [90mundefined[39m,
+      _engineConfig: [36m[Object][39m,
+      _accelerateEngineConfig: [36m[Object][39m,
+      _clientVersion: [32m'7.4.0'[39m,
+      _errorFormat: [32m'colorless'[39m,
+      _tracingHelper: di {},
+      _previewFeatures: [],
+      _activeProvider: [32m'postgresql'[39m,
+      _globalOmit: [90mundefined[39m,
+      _extensions: [36m[e][39m,
+      _engine: [36m[qt][39m,
+      _appliedParent: [36m[Object][39m,
+      _createPrismaPromise: [36m[Function (anonymous)][39m,
+      [32m'$extends'[39m: [36m[Function: Uo][39m,
+      constructor: [36m[class PrismaService extends t][39m,
+      onModuleInit: [36m[AsyncFunction: onModuleInit][39m,
+      onModuleDestroy: [36m[AsyncFunction: onModuleDestroy][39m,
+      user: [36m[Object][39m,
+      refreshToken: [36m[Object][39m,
+      profile: [36m[Object][39m,
+      post: [36m[Object][39m,
+      postTag: [36m[Object][39m,
+      bookmark: [36m[Object][39m,
+      collection: [36m[Object][39m,
+      postMedia: [36m[Object][39m,
+      story: [36m[Object][39m,
+      storyView: [36m[Object][39m,
+      storyReaction: [36m[Object][39m,
+      highlight: [36m[Object][39m,
+      highlightStory: [36m[Object][39m,
+      closeFriend: [36m[Object][39m,
+      comment: [36m[Object][39m,
+      like: [36m[Object][39m,
+      follow: [36m[Object][39m,
+      block: [36m[Object][39m,
+      notification: [36m[Object][39m,
+      conversation: [36m[Object][39m,
+      participant: [36m[Object][39m,
+      message: [36m[Object][39m,
+      messageReaction: [36m[Object][39m,
+      hashtag: [36m[Object][39m,
+      postHashtag: [36m[Object][39m,
+      postEmbedding: [36m[Object][39m,
+      passkey: [36m[Object][39m,
+      report: [36m[Object][39m,
+      searchHistory: [36m[Object][39m,
+      audio: [36m[Object][39m,
+      [32m'$parent'[39m: [36m[Object][39m,
+      [32mSymbol()[39m: [36m[Object][39m
+    },
+    [32mSymbol()[39m: {
+      _originalClient: [36m[Object][39m,
+      _runtimeDataModel: [36m[Object][39m,
+      _requestHandler: [36m[zr [RequestHandler]][39m,
+      _connectionPromise: [90mundefined[39m,
+      _disconnectionPromise: [90mundefined[39m,
+      _engineConfig: [36m[Object][39m,
+      _accelerateEngineConfig: [36m[Object][39m,
+      _clientVersion: [32m'7.4.0'[39m,
+      _errorFormat: [32m'colorless'[39m,
+      _tracingHelper: di {},
+      _previewFeatures: [],
+      _activeProvider: [32m'postgresql'[39m,
+      _globalOmit: [90mundefined[39m,
+      _extensions: [36m[e][39m,
+      _engine: [36m[qt][39m,
+      _appliedParent: [36m[Object][39m,
+      _createPrismaPromise: [36m[Function (anonymous)][39m,
+      [32m'$extends'[39m: [36m[Function: Uo][39m
+    }
+  }
+}
+
+ [31m❯[39m test/app.e2e-spec.ts [2m([22m[2m3 tests[22m[2m | [22m[31m3 failed[39m[2m)[22m[32m 258[2mms[22m[39m
+[31m     [31m×[31m /auth/register (POST)[39m[32m 31[2mms[22m[39m
+[31m     [31m×[31m /auth/login (POST)[39m[32m 9[2mms[22m[39m
+[31m     [31m×[31m /auth/login (POST) - Fail with wrong password[39m[32m 8[2mms[22m[39m
+[31m[Nest] 20734  - [39m02/18/2026, 2:15:11 AM [31m  ERROR[39m [38;5;3m[EmailService] [39m[31mFailed to send email[39m
+[31m[Nest] 20734  - [39m02/18/2026, 2:15:11 AM [31m  ERROR[39m [38;5;3m[EmailService] [39mError: connect ECONNREFUSED ::1:587
+[90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+  errno: [33m-61[39m,
+  code: [32m'ESOCKET'[39m,
+  syscall: [32m'connect'[39m,
+  address: [32m'::1'[39m,
+  port: [33m587[39m,
+  command: [32m'CONN'[39m
+}
+[31m[Nest] 20734  - [39m02/18/2026, 2:15:11 AM [31m  ERROR[39m [38;5;3m[AllExceptionsFilter] [39m[31mUnhandled exception [POST] /api/v1/auth/login: PrismaClientValidationError: 
+Invalid `this.prisma.user.findUnique()` invocation in
+/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/src/auth/auth.service.ts:200:39
+
+  197   dto: LoginDto,
+  198 ): Promise<{ accessToken: string; refreshToken: string }> {
+  199   // Find user by email or username
+→ 200   let user = await this.prisma.user.findUnique({
+          where: {
+            email: undefined,
+        ?   id?: String,
+        ?   verificationToken?: String,
+        ?   resetToken?: String,
+        ?   AND?: UserWhereInput | UserWhereInput[],
+        ?   OR?: UserWhereInput[],
+        ?   NOT?: UserWhereInput | UserWhereInput[],
+        ?   password?: StringFilter | String,
+        ?   createdAt?: DateTimeFilter | DateTime,
+        ?   updatedAt?: DateTimeFilter | DateTime,
+        ?   isActive?: BoolFilter | Boolean,
+        ?   deletedAt?: DateTimeNullableFilter | DateTime | Null,
+        ?   currentChallenge?: StringNullableFilter | String | Null,
+        ?   isOnline?: BoolFilter | Boolean,
+        ?   lastSeenAt?: DateTimeNullableFilter | DateTime | Null,
+        ?   role?: EnumRoleFilter | Role,
+        ?   emailVerified?: DateTimeNullableFilter | DateTime | Null,
+        ?   resetTokenExpires?: DateTimeNullableFilter | DateTime | Null,
+        ?   profile?: ProfileNullableScalarRelationFilter | ProfileWhereInput | Null,
+        ?   posts?: PostListRelationFilter,
+        ?   stories?: StoryListRelationFilter,
+        ?   comments?: CommentListRelationFilter,
+        ?   likes?: LikeListRelationFilter,
+        ?   followers?: FollowListRelationFilter,
+        ?   following?: FollowListRelationFilter,
+        ?   notifications?: NotificationListRelationFilter,
+        ?   sentNotifications?: NotificationListRelationFilter,
+        ?   refreshTokens?: RefreshTokenListRelationFilter,
+        ?   participants?: ParticipantListRelationFilter,
+        ?   messages?: MessageListRelationFilter,
+        ?   messageReactions?: MessageReactionListRelationFilter,
+        ?   blockedBy?: BlockListRelationFilter,
+        ?   blocking?: BlockListRelationFilter,
+        ?   bookmarks?: BookmarkListRelationFilter,
+        ?   collections?: CollectionListRelationFilter,
+        ?   highlights?: HighlightListRelationFilter,
+        ?   passkeys?: PasskeyListRelationFilter,
+        ?   closeFriends?: CloseFriendListRelationFilter,
+        ?   storyViews?: StoryViewListRelationFilter,
+        ?   storyReactions?: StoryReactionListRelationFilter,
+        ?   taggedPosts?: PostTagListRelationFilter,
+        ?   reports?: ReportListRelationFilter,
+        ?   searchHistory?: SearchHistoryListRelationFilter
+          }
+        })
+
+Argument `where` of type UserWhereUniqueInput needs at least one of `id`, `email`, `verificationToken` or `resetToken` arguments. Available options are marked with ?.
+    at ar (/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/node_modules/@prisma/client/runtime/client.js:10:1379)
+    at zr.handleRequestError (/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/node_modules/@prisma/client/runtime/client.js:65:7815)
+    at zr.handleAndLogRequestError (/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/node_modules/@prisma/client/runtime/client.js:65:7467)
+    at zr.request (/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/node_modules/@prisma/client/runtime/client.js:65:7174)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at a (/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/node_modules/@prisma/client/runtime/client.js:75:5816)
+    at AuthService.login (/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/src/auth/auth.service.ts:200:16)
+    at AuthController.login (/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/src/auth/auth.controller.ts:75:20)
+    at /Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/node_modules/@nestjs/core/router/router-execution-context.js:46:28
+    at /Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend/node_modules/@nestjs/core/router/router-proxy.js:9:17[39m
+ [31m❯[39m test/auth.e2e-spec.ts [2m([22m[2m6 tests[22m[2m | [22m[31m3 failed[39m[2m)[22m[33m 401[2mms[22m[39m
+     [32m✓[39m /auth/register (POST)[32m 205[2mms[22m[39m
+[31m     [31m×[31m /auth/login (POST)[39m[32m 8[2mms[22m[39m
+     [32m✓[39m /auth/verify-email (POST)[32m 13[2mms[22m[39m
+[31m     [31m×[31m /auth/refresh (POST)[39m[32m 2[2mms[22m[39m
+[31m     [31m×[31m /auth/logout (POST)[39m[32m 2[2mms[22m[39m
+     [32m✓[39m should fail to access protected route after logout[32m 2[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 6 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m test/app.e2e-spec.ts[2m > [22mAuthentication (e2e)[2m > [22m/auth/register (POST)
+[31m[1mError[22m: expected 201 "Created", got 404 "Not Found"[39m
+[36m [2m❯[22m test/app.e2e-spec.ts:[2m46:8[22m[39m
+    [90m 44| [39m      [33m.[39m[34mpost[39m([32m'/auth/register'[39m)
+    [90m 45| [39m      [33m.[39m[34msend[39m(testUser)
+    [90m 46| [39m      [33m.[39m[34mexpect[39m([34m201[39m)
+    [90m   | [39m       [31m^[39m
+    [90m 47| [39m      [33m.[39m[34mexpect[39m((res[33m:[39m request[33m.[39m[33mResponse[39m) [33m=>[39m {
+    [90m 48| [39m        // eslint-disable-next-line @typescript-eslint/no-unsafe-membe…
+[90m [2m❯[22m Test._assertStatus node_modules/supertest/lib/test.js:[2m309:14[22m[39m
+[90m [2m❯[22m node_modules/supertest/lib/test.js:[2m365:13[22m[39m
+[90m [2m❯[22m Test._assertFunction node_modules/supertest/lib/test.js:[2m342:13[22m[39m
+[90m [2m❯[22m Test.assert node_modules/supertest/lib/test.js:[2m195:23[22m[39m
+[90m [2m❯[22m localAssert node_modules/supertest/lib/test.js:[2m138:14[22m[39m
+[90m [2m❯[22m Server.<anonymous> node_modules/supertest/lib/test.js:[2m152:11[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/app.e2e-spec.ts[2m > [22mAuthentication (e2e)[2m > [22m/auth/login (POST)
+[31m[1mError[22m: expected 201 "Created", got 404 "Not Found"[39m
+[36m [2m❯[22m test/app.e2e-spec.ts:[2m62:8[22m[39m
+    [90m 60| [39m        password[33m:[39m testUser[33m.[39mpassword[33m,[39m
+    [90m 61| [39m      })
+    [90m 62| [39m      [33m.[39m[34mexpect[39m([34m201[39m)
+    [90m   | [39m       [31m^[39m
+    [90m 63| [39m      [33m.[39m[34mexpect[39m((res[33m:[39m request[33m.[39m[33mResponse[39m) [33m=>[39m {
+    [90m 64| [39m        // eslint-disable-next-line @typescript-eslint/no-unsafe-membe…
+[90m [2m❯[22m Test._assertStatus node_modules/supertest/lib/test.js:[2m309:14[22m[39m
+[90m [2m❯[22m node_modules/supertest/lib/test.js:[2m365:13[22m[39m
+[90m [2m❯[22m Test._assertFunction node_modules/supertest/lib/test.js:[2m342:13[22m[39m
+[90m [2m❯[22m Test.assert node_modules/supertest/lib/test.js:[2m195:23[22m[39m
+[90m [2m❯[22m localAssert node_modules/supertest/lib/test.js:[2m138:14[22m[39m
+[90m [2m❯[22m Server.<anonymous> node_modules/supertest/lib/test.js:[2m152:11[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/app.e2e-spec.ts[2m > [22mAuthentication (e2e)[2m > [22m/auth/login (POST) - Fail with wrong password
+[31m[1mError[22m: expected 401 "Unauthorized", got 404 "Not Found"[39m
+[36m [2m❯[22m test/app.e2e-spec.ts:[2m76:8[22m[39m
+    [90m 74| [39m        password[33m:[39m [32m'WrongPassword!'[39m[33m,[39m
+    [90m 75| [39m      })
+    [90m 76| [39m      [33m.[39m[34mexpect[39m([34m401[39m)[33m;[39m
+    [90m   | [39m       [31m^[39m
+    [90m 77| [39m  })[33m;[39m
+    [90m 78| [39m})[33m;[39m
+[90m [2m❯[22m Test._assertStatus node_modules/supertest/lib/test.js:[2m309:14[22m[39m
+[90m [2m❯[22m node_modules/supertest/lib/test.js:[2m365:13[22m[39m
+[90m [2m❯[22m Test._assertFunction node_modules/supertest/lib/test.js:[2m342:13[22m[39m
+[90m [2m❯[22m Test.assert node_modules/supertest/lib/test.js:[2m195:23[22m[39m
+[90m [2m❯[22m localAssert node_modules/supertest/lib/test.js:[2m138:14[22m[39m
+[90m [2m❯[22m Server.<anonymous> node_modules/supertest/lib/test.js:[2m152:11[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/auth.e2e-spec.ts[2m > [22mAuthController (e2e)[2m > [22m/auth/login (POST)
+[31m[1mError[22m: expected 200 "OK", got 500 "Internal Server Error"[39m
+[36m [2m❯[22m test/auth.e2e-spec.ts:[2m97:8[22m[39m
+    [90m 95| [39m        password[33m:[39m testPassword[33m,[39m
+    [90m 96| [39m      })
+    [90m 97| [39m      [33m.[39m[34mexpect[39m([34m200[39m)[33m;[39m
+    [90m   | [39m       [31m^[39m
+    [90m 98| [39m
+    [90m 99| [39m    [34mexpect[39m(response[33m.[39mbody)[33m.[39m[34mtoEqual[39m({ message[33m:[39m [32m'Login successful'[39m })[33m;[39m
+[90m [2m❯[22m Test._assertStatus node_modules/supertest/lib/test.js:[2m309:14[22m[39m
+[90m [2m❯[22m node_modules/supertest/lib/test.js:[2m365:13[22m[39m
+[90m [2m❯[22m Test._assertFunction node_modules/supertest/lib/test.js:[2m342:13[22m[39m
+[90m [2m❯[22m Test.assert node_modules/supertest/lib/test.js:[2m195:23[22m[39m
+[90m [2m❯[22m localAssert node_modules/supertest/lib/test.js:[2m138:14[22m[39m
+[90m [2m❯[22m Server.<anonymous> node_modules/supertest/lib/test.js:[2m152:11[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/auth.e2e-spec.ts[2m > [22mAuthController (e2e)[2m > [22m/auth/refresh (POST)
+[31m[1mError[22m: expected 200 "OK", got 401 "Unauthorized"[39m
+[36m [2m❯[22m test/auth.e2e-spec.ts:[2m143:8[22m[39m
+    [90m141| [39m      [33m.[39m[34mpost[39m([32m'/api/v1/auth/refresh'[39m)
+    [90m142| [39m      [33m.[39m[35mset[39m([32m'x-csrf-token'[39m[33m,[39m csrfToken)
+    [90m143| [39m      [33m.[39m[34mexpect[39m([34m200[39m)[33m;[39m
+    [90m   | [39m       [31m^[39m
+    [90m144| [39m
+    [90m145| [39m    [34mexpect[39m(response[33m.[39mbody)[33m.[39m[34mtoEqual[39m({ message[33m:[39m [32m'Tokens refreshed'[39m })[33m;[39m
+[90m [2m❯[22m Test._assertStatus node_modules/supertest/lib/test.js:[2m309:14[22m[39m
+[90m [2m❯[22m node_modules/supertest/lib/test.js:[2m365:13[22m[39m
+[90m [2m❯[22m Test._assertFunction node_modules/supertest/lib/test.js:[2m342:13[22m[39m
+[90m [2m❯[22m Test.assert node_modules/supertest/lib/test.js:[2m195:23[22m[39m
+[90m [2m❯[22m localAssert node_modules/supertest/lib/test.js:[2m138:14[22m[39m
+[90m [2m❯[22m Server.<anonymous> node_modules/supertest/lib/test.js:[2m152:11[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/auth.e2e-spec.ts[2m > [22mAuthController (e2e)[2m > [22m/auth/logout (POST)
+[31m[1mError[22m: expected 204 "No Content", got 401 "Unauthorized"[39m
+[36m [2m❯[22m test/auth.e2e-spec.ts:[2m162:8[22m[39m
+    [90m160| [39m      [33m.[39m[34mpost[39m([32m'/api/v1/auth/logout'[39m)
+    [90m161| [39m      [33m.[39m[35mset[39m([32m'x-csrf-token'[39m[33m,[39m csrfToken)
+    [90m162| [39m      [33m.[39m[34mexpect[39m([34m204[39m)[33m;[39m
+    [90m   | [39m       [31m^[39m
+    [90m163| [39m
+    [90m164| [39m    [90m// Expect cookies to be cleared[39m
+[90m [2m❯[22m Test._assertStatus node_modules/supertest/lib/test.js:[2m309:14[22m[39m
+[90m [2m❯[22m node_modules/supertest/lib/test.js:[2m365:13[22m[39m
+[90m [2m❯[22m Test._assertFunction node_modules/supertest/lib/test.js:[2m342:13[22m[39m
+[90m [2m❯[22m Test.assert node_modules/supertest/lib/test.js:[2m195:23[22m[39m
+[90m [2m❯[22m localAssert node_modules/supertest/lib/test.js:[2m138:14[22m[39m
+[90m [2m❯[22m Server.<anonymous> node_modules/supertest/lib/test.js:[2m152:11[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[31m6 failed[39m[22m[2m | [22m[1m[32m3 passed[39m[22m[90m (9)[39m
+[2m   Start at [22m 02:15:08
+[2m   Duration [22m 2.85s[2m (transform 853ms, setup 0ms, import 4.70s, tests 659ms, environment 0ms)[22m
+

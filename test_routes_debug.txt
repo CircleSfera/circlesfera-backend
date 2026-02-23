@@ -1,0 +1,62 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90m/Users/ShadyFeliu/Desktop/Projects/CircleSfera/circlesfera-backend[39m
+
+[31m[Nest] 23653  - [39m02/18/2026, 2:19:11 AM [31m  ERROR[39m [38;5;3m[EmailService] [39m[31mFailed to send email[39m
+[31m[Nest] 23653  - [39m02/18/2026, 2:19:11 AM [31m  ERROR[39m [38;5;3m[EmailService] [39mError: connect ECONNREFUSED ::1:587
+[90m    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)[39m {
+  errno: [33m-61[39m,
+  code: [32m'ESOCKET'[39m,
+  syscall: [32m'connect'[39m,
+  address: [32m'::1'[39m,
+  port: [33m587[39m,
+  command: [32m'CONN'[39m
+}
+ [31m❯[39m test/app.e2e-spec.ts [2m([22m[2m3 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 399[2mms[22m[39m
+[31m     [31m×[31m /api/v1/auth/register (POST)[39m[32m 182[2mms[22m[39m
+[31m     [31m×[31m /api/v1/auth/login (POST)[39m[32m 48[2mms[22m[39m
+     [32m✓[39m /api/v1/auth/login (POST) - Fail with wrong password[32m 43[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m test/app.e2e-spec.ts[2m > [22mAuthentication (e2e)[2m > [22m/api/v1/auth/register (POST)
+[31m[1mAssertionError[22m: expected undefined to be defined[39m
+[36m [2m❯[22m test/app.e2e-spec.ts:[2m54:8[22m[39m
+    [90m 52| [39m      [33m.[39m[34msend[39m(testUser)
+    [90m 53| [39m      [33m.[39m[34mexpect[39m([34m201[39m)
+    [90m 54| [39m      [33m.[39m[34mexpect[39m((res[33m:[39m request[33m.[39m[33mResponse[39m) [33m=>[39m {
+    [90m   | [39m       [31m^[39m
+    [90m 55| [39m        // eslint-disable-next-line @typescript-eslint/no-unsafe-membe…
+    [90m 56| [39m        [34mexpect[39m(res[33m.[39mbody[33m.[39maccessToken)[33m.[39m[34mtoBeDefined[39m()[33m;[39m
+[90m [2m❯[22m test/app.e2e-spec.ts:[2m56:38[22m[39m
+[90m [2m❯[22m node_modules/supertest/lib/test.js:[2m365:13[22m[39m
+[90m [2m❯[22m Test._assertFunction node_modules/supertest/lib/test.js:[2m342:13[22m[39m
+[90m [2m❯[22m Test.assert node_modules/supertest/lib/test.js:[2m195:23[22m[39m
+[90m [2m❯[22m localAssert node_modules/supertest/lib/test.js:[2m138:14[22m[39m
+[90m [2m❯[22m Server.<anonymous> node_modules/supertest/lib/test.js:[2m152:11[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m test/app.e2e-spec.ts[2m > [22mAuthentication (e2e)[2m > [22m/api/v1/auth/login (POST)
+[31m[1mError[22m: expected 201 "Created", got 200 "OK"[39m
+[36m [2m❯[22m test/app.e2e-spec.ts:[2m69:8[22m[39m
+    [90m 67| [39m        password[33m:[39m testUser[33m.[39mpassword[33m,[39m
+    [90m 68| [39m      })
+    [90m 69| [39m      [33m.[39m[34mexpect[39m([34m201[39m)
+    [90m   | [39m       [31m^[39m
+    [90m 70| [39m      [33m.[39m[34mexpect[39m((res[33m:[39m request[33m.[39m[33mResponse[39m) [33m=>[39m {
+    [90m 71| [39m        // eslint-disable-next-line @typescript-eslint/no-unsafe-membe…
+[90m [2m❯[22m Test._assertStatus node_modules/supertest/lib/test.js:[2m309:14[22m[39m
+[90m [2m❯[22m node_modules/supertest/lib/test.js:[2m365:13[22m[39m
+[90m [2m❯[22m Test._assertFunction node_modules/supertest/lib/test.js:[2m342:13[22m[39m
+[90m [2m❯[22m Test.assert node_modules/supertest/lib/test.js:[2m195:23[22m[39m
+[90m [2m❯[22m localAssert node_modules/supertest/lib/test.js:[2m138:14[22m[39m
+[90m [2m❯[22m Server.<anonymous> node_modules/supertest/lib/test.js:[2m152:11[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m1 passed[39m[22m[90m (3)[39m
+[2m   Start at [22m 02:19:08
+[2m   Duration [22m 2.74s[2m (transform 375ms, setup 0ms, import 2.25s, tests 399ms, environment 0ms)[22m
+
