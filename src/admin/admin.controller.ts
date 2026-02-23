@@ -9,7 +9,7 @@ import {
 import { AdminService } from './admin.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AdminGuard } from '../auth/guards/admin.guard';
-import { PaginationDto } from '../common/dto/pagination.dto';
+import { AdminQueryDto } from './dto/admin-query.dto';
 
 @Controller('api/v1/admin')
 @UseGuards(JwtAuthGuard, AdminGuard)
@@ -25,27 +25,21 @@ export class AdminController {
 
   /** Get users list for administration. */
   @Get('users')
-  async getUsers(
-    @Query() pagination: PaginationDto,
-    @Query('search') search?: string,
-  ) {
+  async getUsers(@Query() query: AdminQueryDto) {
     return this.adminService.getUsers(
-      pagination.page ? parseInt(pagination.page as unknown as string) : 1,
-      pagination.limit ? parseInt(pagination.limit as unknown as string) : 10,
-      search,
+      query.page ? parseInt(query.page as unknown as string) : 1,
+      query.limit ? parseInt(query.limit as unknown as string) : 10,
+      query.search,
     );
   }
 
   /** Get posts list for moderation. */
   @Get('posts')
-  async getPosts(
-    @Query() pagination: PaginationDto,
-    @Query('search') search?: string,
-  ) {
+  async getPosts(@Query() query: AdminQueryDto) {
     return this.adminService.getPosts(
-      pagination.page ? parseInt(pagination.page as unknown as string) : 1,
-      pagination.limit ? parseInt(pagination.limit as unknown as string) : 10,
-      search,
+      query.page ? parseInt(query.page as unknown as string) : 1,
+      query.limit ? parseInt(query.limit as unknown as string) : 10,
+      query.search,
     );
   }
 }
