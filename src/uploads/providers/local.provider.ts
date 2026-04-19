@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -8,11 +8,31 @@ import { UploadedFile } from '../interfaces/uploaded-file.interface.js';
 
 @Injectable()
 export class LocalStorageProvider implements StorageProvider {
-  private readonly uploadDir = path.join(process.cwd(), 'uploads');
+  private readonly logger = new Logger(LocalStorageProvider.name);
+  private readonly uploadDir = path.resolve(process.cwd(), 'uploads');
 
   constructor(private readonly configService: ConfigService) {
-    if (!fs.existsSync(this.uploadDir)) {
-      fs.mkdirSync(this.uploadDir, { recursive: true });
+    this.logger.log(
+      `Initializing LocalStorageProvider. Root uploads dir: ${this.uploadDir}`,
+    );
+
+    try {
+      if (!fs.existsSync(this.uploadDir)) {
+        this.logger.log(`Creating uploads directory: ${this.uploadDir}`);
+        fs.mkdirSync(this.uploadDir, { recursive: true });
+      }
+
+      // Mandatory write test on startup
+      const testFile = path.join(this.uploadDir, '.startup-test');
+      fs.writeFileSync(testFile, 'CircleSfera Write Test');
+      fs.unlinkSync(testFile);
+      this.logger.log('Local uploads directory is verified as WRITABLE.');
+    } catch (error: unknown) {
+      this.logger.error(
+        `CRITICAL FAILURE: Upload directory is NOT writable or cannot be created: ${this.uploadDir}`,
+      );
+      this.logger.error(error instanceof Error ? error.stack : String(error));
+      // Re-throwing could crash the whole app provider, so we only log a critical warning
     }
   }
 
@@ -24,17 +44,33 @@ export class LocalStorageProvider implements StorageProvider {
 
     const buffer = file.buffer;
 
-    await fs.promises.writeFile(filepath, buffer);
+    try {
+      this.logger.debug(`Writing file to local fs: ${filepath}`);
+      await fs.promises.writeFile(filepath, buffer);
 
-    const type = file.mimetype.startsWith('video')
-      ? 'video'
-      : file.mimetype.startsWith('audio')
-        ? 'audio'
-        : 'image';
+      const url = `/uploads/${filename}`;
+      this.logger.log(`Stored file local successfully: ${filename}`);
 
-    const url = `/uploads/${filename}`;
+      return {
+        url,
+        type: isImage
+          ? 'image'
+          : file.mimetype.startsWith('video')
+            ? 'video'
+            : 'other',
+      };
+    } catch (error: unknown) {
+      this.logger.error(
+        `Critical storage error writing ${filename} to ${this.uploadDir}`,
+      );
+      this.logger.error(error instanceof Error ? error.stack : String(error));
 
-    return { url, type };
+      const errMsg =
+        error instanceof Error ? error.message : 'Unknown storage error';
+      throw new Error(
+        `LocalStorage Error: ${errMsg}. Please verify host disk permissions (chown 1000:1000).`,
+      );
+    }
   }
 
   async delete(url: string): Promise<void> {

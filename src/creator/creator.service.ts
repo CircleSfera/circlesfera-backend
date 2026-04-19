@@ -1,6 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
 
+// ─── Interfaces ──────────────────────────────────────────────────
+interface PostViewsAggregation {
+  _sum: { views: number | null };
+}
+
+interface RecentInteraction {
+  createdAt: Date;
+}
+
+interface CreatorPost {
+  id: string;
+  caption: string | null;
+  type: string;
+  views: number;
+  createdAt: Date;
+  media: { url: string; type: string }[];
+  _count: { likes: number; comments: number; bookmarks: number };
+}
+
 @Injectable()
 export class CreatorService {
   constructor(private readonly prisma: PrismaService) {}
@@ -8,6 +27,9 @@ export class CreatorService {
   // ─── Stats ──────────────────────────────────────────────────────
 
   async getStats(userId: string) {
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
     const results = await Promise.all([
       this.prisma.post.count({
         where: { userId, type: 'POST' },
@@ -20,7 +42,11 @@ export class CreatorService {
         where: { followingId: userId, status: 'ACCEPTED' },
       }),
       this.prisma.follow.count({
-        where: { followerId: userId, status: 'ACCEPTED' },
+        where: {
+          followingId: userId,
+          status: 'ACCEPTED',
+          createdAt: { lt: sevenDaysAgo },
+        },
       }),
       this.prisma.like.count({
         where: { post: { userId } },
@@ -34,17 +60,51 @@ export class CreatorService {
       this.prisma.promotion.count({
         where: { userId, status: 'active' },
       }),
+      // Reach (Post views + Story views)
+      this.prisma.post.aggregate({
+        where: { userId },
+        _sum: {
+          views: true,
+        },
+      }) as unknown as Promise<PostViewsAggregation>,
+      this.prisma.storyView.count({
+        where: { story: { userId } },
+      }),
+      // Best time to post (Insights)
+      this.prisma.like.findMany({
+        where: { post: { userId }, createdAt: { gte: sevenDaysAgo } },
+        select: { createdAt: true },
+      }),
+      this.prisma.follow.count({
+        where: { followerId: userId, status: 'ACCEPTED' },
+      }),
     ]);
 
     const postCount = results[0];
     const frameCount = results[1];
     const storyCount = results[2];
     const followerCount = results[3];
-    const followingCount = results[4];
+    const followerCount7DaysAgo = results[4];
     const totalLikes = results[5];
     const totalComments = results[6];
     const totalBookmarks = results[7];
     const activePromotions = results[8];
+    const postViews = results[9]?._sum?.views || 0;
+    const storyViews = results[10];
+    const recentLikes = results[11] as RecentInteraction[];
+    const followingCount = results[12];
+
+    const totalReach = postViews + storyViews;
+
+    // Calculate follower growth percentage
+    const followerGrowth =
+      followerCount7DaysAgo > 0
+        ? Math.round(
+            ((followerCount - followerCount7DaysAgo) / followerCount7DaysAgo) *
+              100 *
+              10,
+          ) / 10
+        : 0;
 
     const engagementRate =
       followerCount > 0
@@ -55,6 +115,55 @@ export class CreatorService {
               100 *
               100,
           ) / 100
+        : 0;
+
+    // Calculate Most Active Day (Insights)
+    const daysArr = [
+      'Domingos',
+      'Lunes',
+      'Martes',
+      'Miércoles',
+      'Jueves',
+      'Viernes',
+      'Sábados',
+    ];
+    const dayCounts = [0, 0, 0, 0, 0, 0, 0];
+    recentLikes.forEach((l) => {
+      dayCounts[new Date(l.createdAt).getDay()]++;
+    });
+
+    const maxLikes = Math.max(...dayCounts);
+    const bestDayIndex = maxLikes > 0 ? dayCounts.indexOf(maxLikes) : 0;
+    const bestDay = daysArr[bestDayIndex];
+
+    // Calculate Retention Rate (Proxy: Followers who interacted in last 30 days)
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const activeFollowersCount = await this.prisma.follow.count({
+      where: {
+        followingId: userId,
+        status: 'ACCEPTED',
+        follower: {
+          OR: [
+            {
+              likes: {
+                some: { post: { userId }, createdAt: { gte: thirtyDaysAgo } },
+              },
+            },
+            {
+              comments: {
+                some: { post: { userId }, createdAt: { gte: thirtyDaysAgo } },
+              },
+            },
+          ],
+        },
+      },
+    });
+
+    const retentionRate =
+      followerCount > 0
+        ? Math.round((activeFollowersCount / followerCount) * 100)
         : 0;
 
     return {
@@ -68,6 +177,12 @@ export class CreatorService {
       totalBookmarks,
       activePromotions,
       engagementRate,
+      followerGrowth,
+      totalReach,
+      insights: {
+        bestDayToPost: bestDay,
+        retentionRate,
+      },
     };
   }
 
@@ -153,7 +268,9 @@ export class CreatorService {
       ...(type ? { type: type as 'POST' | 'FRAME' } : {}),
     };
 
-    const [data, total] = await Promise.all([
+    // Calculate Average Interactions for the user to determine performance
+    const [stats, postsResult, total] = await Promise.all([
+      this.getStats(userId),
       this.prisma.post.findMany({
         where,
         orderBy: { createdAt: 'desc' },
@@ -163,15 +280,34 @@ export class CreatorService {
           id: true,
           caption: true,
           type: true,
+          views: true,
           createdAt: true,
           media: { take: 1, select: { url: true, type: true } },
           _count: {
             select: { likes: true, comments: true, bookmarks: true },
           },
         },
-      }),
+      }) as unknown as Promise<CreatorPost[]>,
       this.prisma.post.count({ where }),
     ]);
+
+    const avgInteractions =
+      (stats.totalLikes + stats.totalComments) /
+      (stats.postCount + stats.frameCount || 1);
+
+    const data = postsResult.map((post) => {
+      const interactions =
+        (post._count?.likes || 0) + (post._count?.comments || 0);
+
+      const avg = avgInteractions > 0 ? avgInteractions : 0;
+      const performanceScore =
+        avg > 0 ? Math.round((interactions / avg) * 100) : 100;
+
+      return {
+        ...post,
+        performanceScore,
+      };
+    });
 
     return {
       data,
@@ -316,7 +452,7 @@ export class CreatorService {
     return this.prisma.promotion.create({
       data: {
         userId,
-        targetType,
+        targetType: targetType as 'post' | 'frame' | 'story',
         targetId,
         budget,
         currency,

@@ -1,57 +1,57 @@
 import {
   Controller,
   Post,
-  Get,
   Body,
   UseGuards,
   Req,
-  Headers,
-  RawBodyRequest,
-  BadRequestException,
+  Get,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
+import type { Request } from 'express';
 import { PaymentsService } from './payments.service.js';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
-import { Request } from 'express';
+
+interface RequestWithUser extends Request {
+  user: { userId: string; email: string; role: string };
+}
 
 @Controller('payments')
 export class PaymentsController {
   constructor(private readonly paymentsService: PaymentsService) {}
 
-  @UseGuards(JwtAuthGuard)
-  @Get('analytics/creator')
-  async getCreatorAnalytics(@Req() req: Request & { user: { id: string } }) {
-    return this.paymentsService.getCreatorAnalytics(req.user.id);
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Post('connect-onboarding')
-  async generateConnectLink(@Req() req: Request & { user: { id: string } }) {
-    const userId = req.user.id;
-    return this.paymentsService.createConnectAccount(userId);
-  }
-
-  @UseGuards(JwtAuthGuard)
   @Post('checkout')
-  async createCheckoutSession(
-    @Req() req: Request & { user: { id: string } },
-    @Body() body: { targetType: string; targetId: string },
+  @UseGuards(JwtAuthGuard)
+  async createCheckout(
+    @Req() req: RequestWithUser,
+    @Body() body: { planId: string },
   ) {
-    return this.paymentsService.createCheckoutSession(
-      req.user.id,
-      body.targetType,
-      body.targetId,
-    );
+    return this.paymentsService.createCheckout(req.user.userId, body.planId);
   }
 
-  // Webhook endpoint (Requires raw body parsed by NestJS, disabled globally in main.ts usually and bypassed specifically for webhooks)
+  @Get('portal')
+  @UseGuards(JwtAuthGuard)
+  async getPortal(@Req() req: RequestWithUser) {
+    return this.paymentsService.getPortalUrl(req.user.userId);
+  }
+
   @Post('webhook')
-  async handleStripeWebhook(
-    @Headers('stripe-signature') signature: string,
-    @Req() req: RawBodyRequest<Request>,
-  ) {
-    if (!signature || !req.rawBody) {
-      throw new BadRequestException('Missing payload or signature');
+  @HttpCode(HttpStatus.OK)
+  async handleWebhook(@Req() req: Request, @Body() body: Buffer) {
+    const sig = req.headers['stripe-signature'] as string | undefined;
+
+    if (!sig) {
+      return { received: false, error: 'Missing stripe-signature header' };
     }
-    return this.paymentsService.handleWebhook(signature, req.rawBody);
+
+    try {
+      const event = this.paymentsService.constructEvent(body, sig);
+      await this.paymentsService.processWebhookEvent(event);
+      return { received: true };
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      console.error(`Webhook Error: ${message}`);
+      return { received: false, error: message };
+    }
   }
 }

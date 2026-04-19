@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*",
+    "test/**/*",
+    "prisma/**/*",
+    "scripts/**/*",
+    "vitest.config.ts",
+    "vitest.e2e.config.ts",
+    "prisma.config.ts",
+    "eslint.config.mjs"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

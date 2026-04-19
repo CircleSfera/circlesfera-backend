@@ -82,13 +82,9 @@ model User {
   isOnline   Boolean   @default(false)
   lastSeenAt DateTime?
 
-  // Monetization (PPV)
-  stripeAccountId       String? // Stripe Connect account ID for payouts
-  isMonetizationEnabled Boolean @default(true) // Global switch for the user
-
-  // Purchases (Buyer & Seller relations)
-  purchases Purchase[] @relation("BuyerPurchases")
-  sales     Purchase[] @relation("SellerSales")
+  // Platform Subscriptions
+  stripeCustomerId      String? @unique
+  platformSubscriptions PlatformSubscription[]
 
   role Role @default(USER)
 
@@ -150,7 +146,9 @@ model Profile {
   username  String   @unique
   fullName  String?
   bio       String?
-  avatar    String?
+  avatar       String?
+  standardUrl  String? // New: Optimized variant
+  thumbnailUrl String? // New: Optimized variant
   website   String?
   location  String?
   isPrivate Boolean  @default(false)
@@ -189,19 +187,19 @@ model Post {
   turnOffComments Boolean @default(false)
 
   type PostType @default(POST)
+  views Int      @default(0)
 
-  // Monetization (PPV)
-  isPremium Boolean @default(false)
-  price     Float?
-  currency  String  @default("USD")
 
-  audioId String?
-  audio   Audio?  @relation(fields: [audioId], references: [id], onDelete: SetNull)
 
-  @@index([userId, type, createdAt])
+  visibility      Visibility     @default(PUBLIC)
+  audioId         String?
+  audio           Audio?         @relation(fields: [audioId], references: [id], onDelete: SetNull)
+
+  @@index([userId, type, visibility, createdAt])
   @@index([userId])
   @@index([createdAt])
   @@index([type])
+  @@index([visibility])
   @@map("posts")
 }
 
@@ -244,7 +242,9 @@ model Collection {
   id        String   @id @default(uuid())
   userId    String
   name      String
-  coverUrl  String?
+  coverUrl     String?
+  standardUrl  String? // New: Optimized variant
+  thumbnailUrl String? // New: Optimized variant
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -258,7 +258,9 @@ model Collection {
 model PostMedia {
   id        String   @id @default(uuid())
   postId    String
-  url       String
+  url          String
+  standardUrl  String? // New: Optimized variant
+  thumbnailUrl String? // New: Optimized variant
   type      String   @default("image") // "image" | "video"
   order     Int      @default(0) // For carousel ordering
   filter    String? // Store filter ID (e.g. "sepia", "clarendon")
@@ -274,7 +276,9 @@ model PostMedia {
 model Story {
   id        String   @id @default(uuid())
   userId    String
-  mediaUrl  String
+  mediaUrl     String
+  standardUrl  String? // New: Optimized variant
+  thumbnailUrl String? // New: Optimized variant
   mediaType String   @default("image") // image or video
   expiresAt DateTime
   createdAt DateTime @default(now())
@@ -282,10 +286,7 @@ model Story {
   // New: Close Friends support
   isCloseFriendsOnly Boolean @default(false)
 
-  // Monetization (PPV)
-  isPremium Boolean @default(false)
-  price     Float?
-  currency  String  @default("USD")
+
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -481,31 +482,65 @@ enum FollowStatus {
   ACCEPTED
 }
 
-// PPV Monetization System
-model Purchase {
-  id       String @id @default(uuid())
-  buyerId  String
-  sellerId String
+enum Visibility {
+  PUBLIC
+  FOLLOWERS
+  PRIVATE
+}
 
-  targetType String // "post", "story", "frame"
-  targetId   String
+// Platform Subscriptions (Phase 1 SaaS Model)
+model PlatformPlan {
+  id               String   @id @default(uuid())
+  name             String   // e.g. "Pro Creator", "Verified"
+  description      String?
+  price            Float
+  currency         String   @default("USD")
+  interval         String   @default("month") // "month", "year"
+  stripeProductId  String   @unique
+  stripePriceId    String   @unique
+  features         String[] // Array of included features
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
-  amount          Float
-  currency        String  @default("USD")
-  status          String  @default("COMPLETED") // "PENDING", "COMPLETED", "FAILED"
-  stripeSessionId String? @unique
+  subscriptions PlatformSubscription[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@map("platform_plans")
+}
 
-  buyer  User @relation("BuyerPurchases", fields: [buyerId], references: [id], onDelete: Cascade)
-  seller User @relation("SellerSales", fields: [sellerId], references: [id], onDelete: Cascade)
+model PlatformSubscription {
+  id                   String   @id @default(uuid())
+  userId               String
+  planId               String
+  status               String   @default("active") // "active", "canceled", "past_due"
+  stripeSubscriptionId String   @unique
+  currentPeriodStart   DateTime
+  currentPeriodEnd     DateTime
+  cancelAtPeriodEnd    Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 
-  @@unique([buyerId, targetId]) // A user can only buy a specific piece of content once
-  @@index([buyerId])
-  @@index([sellerId])
-  @@index([targetType, targetId])
-  @@map("purchases")
+  user User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan PlatformPlan @relation(fields: [planId], references: [id])
+
+  @@unique([userId, planId])
+  @@index([userId])
+  @@index([status])
+  @@map("platform_subscriptions")
+}
+
+// Log of incoming webhooks to ensure idempotency
+model WebhookEvent {
+  id         String   @id @default(uuid())
+  provider   String // "stripe", "ccbill", "segpay"
+  externalId String   @unique // The event ID from the provider
+  payload    Json
+  status     String   @default("PENDING") // "PENDING", "PROCESSED", "FAILED"
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  processedAt DateTime?
+
+  @@map("webhook_events")
 }
 
 model Notification {

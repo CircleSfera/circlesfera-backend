@@ -20,5 +20,6 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["vitest/globals", "node"]
   },
+  "include": ["src/**/*", "test/**/*", "vitest.config.ts", "vitest.e2e.config.ts"],
   "exclude": ["vitest.config.ts", "vitest.e2e.config.ts", "node_modules", "dist"]
 }

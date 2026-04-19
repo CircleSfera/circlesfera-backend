@@ -8,6 +8,7 @@ import {
   IsBoolean,
 } from 'class-validator';
 import { Type } from 'class-transformer';
+import { Visibility } from '@prisma/client';
 
 class MediaItemDto {
   @IsString()
@@ -17,6 +18,14 @@ class MediaItemDto {
   @IsString()
   @IsOptional()
   type!: string; // 'image' | 'video'
+
+  @IsString()
+  @IsOptional()
+  standardUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  thumbnailUrl?: string;
 
   @IsString()
   @IsOptional()
@@ -58,16 +67,7 @@ export class CreatePostDto {
   @IsOptional()
   audioId?: string;
 
-  // PPV Monetization
   @IsOptional()
-  @IsBoolean()
-  isPremium?: boolean;
-
-  @IsOptional()
-  @Type(() => Number)
-  price?: number;
-
-  @IsOptional()
-  @IsString()
-  currency?: string;
+  @IsEnum(Visibility)
+  visibility?: Visibility;
 }

@@ -36,12 +36,34 @@ import { CreatorModule } from './creator/creator.module.js';
 import { RedisCacheModule } from './common/cache/cache.module.js';
 import { WhitelistModule } from './whitelist/whitelist.module.js';
 import { BullModule } from '@nestjs/bullmq';
+
+import { HealthModule } from './health/health.module.js';
 import { PaymentsModule } from './payments/payments.module.js';
 
 import { CsrfController } from './common/csrf/csrf.controller.js';
+import { LoggerModule } from 'nestjs-pino';
+import { SentryModule } from '@sentry/nestjs/setup';
 
 @Module({
   imports: [
+    SentryModule.forRoot(),
+    LoggerModule.forRoot({
+      pinoHttp: {
+        transport:
+          process.env.NODE_ENV !== 'production'
+            ? {
+                target: 'pino-pretty',
+                options: {
+                  colorize: true,
+                  singleLine: true,
+                  ignore: 'pid,hostname',
+                },
+              }
+            : undefined,
+        level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
+        redact: ['req.headers.cookie', 'req.headers.authorization'],
+      },
+    }),
     RedisCacheModule,
     BullModule.forRootAsync({
       imports: [ConfigModule],
@@ -111,6 +133,7 @@ import { CsrfController } from './common/csrf/csrf.controller.js';
     AdminModule,
     CreatorModule,
     WhitelistModule,
+    HealthModule,
     PaymentsModule,
   ],
   controllers: [AppController, CsrfController],

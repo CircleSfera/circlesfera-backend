@@ -21,6 +21,7 @@ RUN npm install
 
 # Copy backend source code
 COPY circlesfera-backend .
+RUN rm -f prisma.config.ts
 
 # Generate Prisma Client
 RUN npx prisma generate

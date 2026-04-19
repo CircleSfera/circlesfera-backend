@@ -102,6 +102,23 @@ export class NotificationsService {
     content: string;
     postId?: string;
   }) {
+    // Prevent duplicate notifications if created within a short window (e.g. 1 minute)
+    // for the same sender, recipient, and type.
+    const oneMinuteAgo = new Date(Date.now() - 60 * 1000);
+    const existing = await this.prisma.notification.findFirst({
+      where: {
+        recipientId: data.recipientId,
+        senderId: data.senderId,
+        type: data.type,
+        postId: data.postId,
+        createdAt: { gte: oneMinuteAgo },
+      },
+    });
+
+    if (existing) {
+      return existing;
+    }
+
     const notification = await this.prisma.notification.create({
       data: {
         recipientId: data.recipientId,

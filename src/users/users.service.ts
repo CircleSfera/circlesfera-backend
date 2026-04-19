@@ -127,4 +127,64 @@ export class UsersService {
       data: { isActive: true },
     });
   }
+
+  /**
+   * GDPR: Gathers all user-related data for export.
+   * @param userId - The user ID to export
+   */
+  async exportUserData(userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      include: {
+        profile: true,
+        refreshTokens: true,
+        posts: {
+          include: {
+            media: true,
+            _count: { select: { likes: true, comments: true } },
+          },
+        },
+        followers: {
+          include: {
+            follower: {
+              select: { profile: { select: { username: true } } },
+            },
+          },
+        },
+        following: {
+          include: {
+            following: {
+              select: { profile: { select: { username: true } } },
+            },
+          },
+        },
+        comments: true,
+        bookmarks: { include: { post: { select: { caption: true } } } },
+      },
+    });
+
+    if (!user) throw new Error('User not found');
+
+    // Clean up sensitive fields before export
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, refreshTokens, ...safeData } = user;
+    return safeData as Record<string, unknown>;
+  }
+
+  /**
+   * GDPR: Fully deletes a user and all related data via cascading.
+   * @param userId - The user ID to delete
+   */
+  async deleteUser(userId: string) {
+    return this.prisma.$transaction(async (tx) => {
+      // 1. Double check user exists
+      const user = await tx.user.findUnique({ where: { id: userId } });
+      if (!user) throw new Error('User not found');
+
+      // 2. Perform deletion (Cascading will handle posts, comments, profile, etc.)
+      return tx.user.delete({
+        where: { id: userId },
+      });
+    });
+  }
 }

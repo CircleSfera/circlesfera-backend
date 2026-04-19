@@ -1,9 +1,16 @@
-import { IsString, IsEnum, IsOptional, IsBoolean } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsString, IsEnum, IsOptional } from 'class-validator';
 
 export class CreateStoryDto {
   @IsString()
   mediaUrl!: string;
+
+  @IsString()
+  @IsOptional()
+  standardUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  thumbnailUrl?: string;
 
   @IsOptional()
   @IsEnum(['image', 'video'])
@@ -15,17 +22,4 @@ export class CreateStoryDto {
   @IsString()
   @IsOptional()
   audioId?: string;
-
-  // PPV Monetization
-  @IsOptional()
-  @IsBoolean()
-  isPremium?: boolean;
-
-  @IsOptional()
-  @Type(() => Number)
-  price?: number;
-
-  @IsOptional()
-  @IsString()
-  currency?: string;
 }

@@ -1,3 +1,4 @@
+import './instrument.js';
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -10,11 +11,15 @@ import { AppModule } from './app.module.js';
 import { RedisIoAdapter } from './common/adapters/redis-io.adapter.js';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter.js';
 import { doubleCsrfProtection } from './common/config/csrf.config.js';
+import { Logger } from 'nestjs-pino';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, {
     bodyParser: true,
+    bufferLogs: true,
   });
+
+  app.useLogger(app.get(Logger));
 
   // Enable CORS with strict origin check
   const configService = app.get(ConfigService);
@@ -90,6 +95,7 @@ async function bootstrap(): Promise<void> {
       '/api/v1/auth/passkey/login-verify',
       '/api/v1/csrf-token',
       '/api/v1/whitelist/signup',
+      '/api/v1/payments/webhook',
     ];
 
     if (
@@ -106,9 +112,15 @@ async function bootstrap(): Promise<void> {
   // const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(app.get(HttpAdapterHost)));
 
+  // Stripe Webhook needs raw body for signature verification
+  app.use(
+    '/api/v1/payments/webhook',
+    bodyParser.raw({ type: 'application/json' }),
+  );
+
   // Use sensible global body parser limits (Dos protection)
-  app.use(bodyParser.json({ limit: '500mb' }));
-  app.use(bodyParser.urlencoded({ limit: '500mb', extended: true }));
+  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
   // WebSocket Redis Adapter
   const redisIoAdapter = new RedisIoAdapter(app, configService);
@@ -142,12 +154,26 @@ async function bootstrap(): Promise<void> {
 
   // Final Security Check: Ensure critical secrets are set and strong
   if (configService.get('NODE_ENV') !== 'test') {
-    const secrets = ['JWT_SECRET', 'JWT_REFRESH_SECRET', 'CSRF_SECRET'];
+    const secrets = [
+      'JWT_SECRET',
+      'JWT_REFRESH_SECRET',
+      'CSRF_SECRET',
+      'STRIPE_SECRET_KEY',
+      'STRIPE_WEBHOOK_SECRET',
+    ];
     for (const key of secrets) {
       const val = configService.get<string>(key);
-      if (!val || val.length < 64) {
+      const isProd = configService.get('NODE_ENV') === 'production';
+
+      if (
+        !val ||
+        (isProd &&
+          (val.length < 64 ||
+            val.includes('CHANGE_ME') ||
+            val.includes('dummy')))
+      ) {
         throw new Error(
-          `SECURITY ALERT: ${key} is missing or too weak (min 64 chars required).`,
+          `SECURITY ALERT: ${key} is missing, too weak, or contains placeholder values.`,
         );
       }
     }

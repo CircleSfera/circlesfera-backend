@@ -5,6 +5,7 @@ import {
   Query,
   Patch,
   Param,
+  Delete,
 } from '@nestjs/common';
 import { UsersService } from './users.service.js';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
@@ -23,7 +24,7 @@ export class UsersController {
   async getSuggestions(
     @CurrentUser() user: CurrentUserData,
     @Query('limit') limit?: string,
-  ): Promise<any[]> {
+  ): Promise<Record<string, unknown>[]> {
     return this.usersService.getSuggestions(
       user.userId,
       limit ? parseInt(limit) : 10,
@@ -41,5 +42,20 @@ export class UsersController {
   @UseGuards(AdminGuard)
   async unbanUser(@Param('id') id: string) {
     return this.usersService.unbanUser(id);
+  }
+
+  /** GDPR: Export all user data as JSON. */
+  @Get('gdpr/export')
+  async exportData(
+    @CurrentUser() user: CurrentUserData,
+  ): Promise<Record<string, unknown>> {
+    return this.usersService.exportUserData(user.userId);
+  }
+
+  /** GDPR: Full account deletion (irreversible). */
+  @Delete('gdpr/account')
+  async deleteAccount(@CurrentUser() user: CurrentUserData) {
+    await this.usersService.deleteUser(user.userId);
+    return { message: 'Account deleted successfully' };
   }
 }

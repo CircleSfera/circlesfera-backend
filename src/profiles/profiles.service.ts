@@ -55,14 +55,30 @@ export class ProfilesService {
       throw new NotFoundException('Profile not found');
     }
 
-    // Explicitly add verificationLevel to the top level for frontend simplicity
-    const profileWithLevel = {
+    // Check if user is verified via subscription
+    const isVerifiedResult = await this.prisma.platformSubscription.findFirst({
+      where: {
+        userId: profile.userId,
+        status: 'active',
+        plan: { name: { contains: 'Verified', mode: 'insensitive' } },
+      },
+      select: { id: true },
+    });
+
+    // Explicitly add fields to the top level for frontend simplicity
+    const profileWithFields = {
       ...profile,
       verificationLevel: profile.user?.verificationLevel,
+      accountType: profile.user?.accountType,
+      isVerified:
+        !!isVerifiedResult ||
+        profile.user?.verificationLevel === 'VERIFIED' ||
+        profile.user?.verificationLevel === 'ELITE' ||
+        profile.user?.verificationLevel === 'BUSINESS',
     };
 
-    await this.cacheManager.set(cacheKey, profileWithLevel, 600000); // 10 minutes
-    return profileWithLevel;
+    await this.cacheManager.set(cacheKey, profileWithFields, 600000); // 10 minutes
+    return profileWithFields;
   }
 
   /**
@@ -159,14 +175,46 @@ export class ProfilesService {
       });
     }
 
+    const updateData = {
+      ...profileData,
+      ...(profileData.avatar !== undefined
+        ? { thumbnailUrl: null, standardUrl: null }
+        : {}),
+    };
+
     const updated = await this.prisma.profile.update({
       where: { userId },
-      data: profileData,
+      data: updateData,
+      include: {
+        user: {
+          select: {
+            id: true,
+            email: true,
+            role: true,
+            createdAt: true,
+            verificationLevel: true,
+            accountType: true,
+            _count: {
+              select: {
+                followers: { where: { status: 'ACCEPTED' } },
+                following: { where: { status: 'ACCEPTED' } },
+              },
+            },
+          },
+        },
+      },
     });
+
+    // Flatten for UI convenience
+    const flattened = {
+      ...updated,
+      accountType: updated.user?.accountType,
+      verificationLevel: updated.user?.verificationLevel,
+    };
 
     // Invalidate cache
     await this.cacheManager.del(`profile:${profile.username}`);
-    return updated;
+    return flattened;
   }
 
   /**
@@ -201,7 +249,27 @@ export class ProfilesService {
       throw new NotFoundException('Profile not found');
     }
 
-    return profile;
+    // Check if user is verified via subscription
+    const isVerifiedResult = await this.prisma.platformSubscription.findFirst({
+      where: {
+        userId: profile.userId,
+        status: 'active',
+        plan: { name: { contains: 'Verified', mode: 'insensitive' } },
+      },
+      select: { id: true },
+    });
+
+    // Flatten for UI convenience
+    return {
+      ...profile,
+      accountType: profile.user?.accountType,
+      verificationLevel: profile.user?.verificationLevel,
+      isVerified:
+        !!isVerifiedResult ||
+        profile.user?.verificationLevel === 'VERIFIED' ||
+        profile.user?.verificationLevel === 'ELITE' ||
+        profile.user?.verificationLevel === 'BUSINESS',
+    };
   }
 
   /**

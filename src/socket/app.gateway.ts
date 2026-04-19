@@ -207,6 +207,71 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
     });
   }
 
+  // --- WebRTC VOIP Signaling ---
+
+  @SubscribeMessage('call:invite')
+  async handleCallInvite(
+    @MessageBody() payload: { recipientId: string; type: 'audio' | 'video' },
+    @ConnectedSocket() client: SocketWithAuth,
+  ) {
+    const callerId = client.data.user.sub;
+    const caller = await this.prisma.user.findUnique({
+      where: { id: callerId },
+      select: {
+        id: true,
+        profile: {
+          select: { username: true, fullName: true, avatar: true },
+        },
+      },
+    });
+
+    this.logger.log(
+      `Call invite from ${callerId} to ${payload.recipientId} (${payload.type})`,
+    );
+
+    this.server.to(`user:${payload.recipientId}`).emit('call:incoming', {
+      caller: caller,
+      type: payload.type,
+      signalData: null, // Initial invitation, signaling will follow in call:signal
+    });
+  }
+
+  @SubscribeMessage('call:accept')
+  handleCallAccept(
+    @MessageBody() payload: { callerId: string },
+    @ConnectedSocket() client: SocketWithAuth,
+  ) {
+    const receiverId = client.data.user.sub;
+    this.logger.log(
+      `Call accepted by ${receiverId} (Caller: ${payload.callerId})`,
+    );
+    this.server.to(`user:${payload.callerId}`).emit('call:accepted', {
+      receiverId,
+    });
+  }
+
+  @SubscribeMessage('call:decline')
+  handleCallDecline(@MessageBody() payload: { callerId: string }) {
+    this.server.to(`user:${payload.callerId}`).emit('call:declined');
+  }
+
+  @SubscribeMessage('call:signal')
+  handleCallSignal(
+    @MessageBody() payload: { targetId: string; signal: unknown },
+    @ConnectedSocket() client: SocketWithAuth,
+  ) {
+    // Transparently forward WebRTC signaling data (OFFER, ANSWER, ICE Candidates)
+    this.server.to(`user:${payload.targetId}`).emit('call:signal', {
+      signal: payload.signal,
+      fromId: client.data.user.sub,
+    });
+  }
+
+  @SubscribeMessage('call:hangup')
+  handleCallHangup(@MessageBody() payload: { targetId: string }) {
+    this.server.to(`user:${payload.targetId}`).emit('call:ended');
+  }
+
   /**
    * Extract JWT token from socket handshake.
    * Priority: 1) HTTP-only cookie  2) Authorization Bearer header

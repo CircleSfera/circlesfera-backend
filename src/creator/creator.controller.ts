@@ -15,13 +15,16 @@ import {
 import type { Request } from 'express';
 import { CreatorService } from './creator.service.js';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
+import { SubscriptionGuard } from '../auth/guards/subscription.guard.js';
+import { RequiresPlan } from '../auth/decorators/requires-plan.decorator.js';
 
 interface AuthRequest extends Request {
   user: { userId: string; email: string; role: string };
 }
 
 @Controller('creator')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, SubscriptionGuard)
+@RequiresPlan('Elite Creator')
 export class CreatorController {
   constructor(private readonly creatorService: CreatorService) {}
 

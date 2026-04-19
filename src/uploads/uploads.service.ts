@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, Logger } from '@nestjs/common';
 import {
   StorageProvider,
   STORAGE_PROVIDER,
@@ -11,6 +11,8 @@ import { UploadedFile } from './interfaces/uploaded-file.interface.js';
  */
 @Injectable()
 export class UploadsService {
+  private readonly logger = new Logger(UploadsService.name);
+
   constructor(
     @Inject(STORAGE_PROVIDER)
     private readonly storageProvider: StorageProvider,
@@ -19,17 +21,67 @@ export class UploadsService {
 
   /**
    * Upload a file to the configured storage provider.
-   * Processes images (resizing/optimization) before upload.
+   * Processes images into multiple optimized variants (original, standard, thumbnail).
    * @param file - The uploaded file data
-   * @returns The public URL and MIME type of the stored file
+   * @returns The public URLs and MIME type of the stored file
    */
-  async uploadFile(file: UploadedFile): Promise<{ url: string; type: string }> {
-    const processed = await this.mediaProcessor.process(file);
-    return this.storageProvider.upload({
-      ...file,
-      buffer: processed.buffer,
-      mimetype: processed.mimetype,
-    });
+  async uploadFile(file: UploadedFile): Promise<{
+    url: string;
+    standardUrl?: string;
+    thumbnailUrl?: string;
+    type: string;
+  }> {
+    this.logger.log(
+      `Received upload request for: ${file.originalname} (${file.mimetype})`,
+    );
+
+    try {
+      const processed = await this.mediaProcessor.process(file);
+      const isImage = file.mimetype.startsWith('image/');
+
+      if (isImage) {
+        this.logger.debug(`Uploading 3 image variants...`);
+        const [orig, std, thumb] = await Promise.all([
+          this.storageProvider.upload({
+            ...file,
+            buffer: processed.original.buffer,
+            mimetype: processed.original.mimetype,
+          }),
+          this.storageProvider.upload({
+            ...file,
+            buffer: processed.standard.buffer,
+            mimetype: processed.standard.mimetype,
+          }),
+          this.storageProvider.upload({
+            ...file,
+            buffer: processed.thumbnail.buffer,
+            mimetype: processed.thumbnail.mimetype,
+          }),
+        ]);
+
+        return {
+          url: orig.url,
+          standardUrl: std.url,
+          thumbnailUrl: thumb.url,
+          type: orig.type,
+        };
+      }
+
+      // Non-images (Video/Audio/Docs)
+      this.logger.debug(`File processed, handing off to storage provider...`);
+      const result = await this.storageProvider.upload({
+        ...file,
+        buffer: processed.original.buffer,
+        mimetype: processed.original.mimetype,
+      });
+
+      return result;
+    } catch (error: unknown) {
+      this.logger.error(
+        `Upload flow failed for ${file.originalname}: ${error instanceof Error ? error.stack : String(error)}`,
+      );
+      throw error;
+    }
   }
 
   /**

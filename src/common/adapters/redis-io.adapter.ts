@@ -3,10 +3,11 @@ import { ServerOptions, Server } from 'socket.io';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { Redis } from 'ioredis';
 import { ConfigService } from '@nestjs/config';
-import { INestApplicationContext } from '@nestjs/common';
+import { INestApplicationContext, Logger } from '@nestjs/common';
 
 export class RedisIoAdapter extends IoAdapter {
   private adapterConstructor!: ReturnType<typeof createAdapter>;
+  private readonly logger = new Logger(RedisIoAdapter.name);
 
   constructor(
     app: INestApplicationContext,
@@ -19,21 +20,40 @@ export class RedisIoAdapter extends IoAdapter {
     const host = this.configService.get<string>('REDIS_HOST') || 'localhost';
     const port = this.configService.get<number>('REDIS_PORT') || 6379;
 
-    const pubClient = new Redis({ host, port });
-    const subClient = pubClient.duplicate();
+    this.logger.log(`Connecting to Redis for WebSockets at ${host}:${port}...`);
 
-    await Promise.all([pubClient.connect(), subClient.connect()]).catch(() => {
-      console.warn(
-        '⚠️ Could not connect to Redis for WebSockets. Scaling may be limited.',
-      );
+    const pubClient = new Redis({
+      host,
+      port,
+      lazyConnect: true,
+      retryStrategy(times) {
+        const delay = Math.min(times * 50, 2000);
+        return delay;
+      },
     });
 
-    this.adapterConstructor = createAdapter(pubClient, subClient);
+    const subClient = pubClient.duplicate();
+
+    try {
+      await Promise.all([pubClient.connect(), subClient.connect()]);
+      this.adapterConstructor = createAdapter(pubClient, subClient);
+      this.logger.log('✅ Redis IoAdapter successfully initialized.');
+    } catch (error) {
+      this.logger.error(
+        `❌ Redis connection failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      this.logger.warn(
+        'Scaling capabilities for WebSockets will be limited until Redis is available.',
+      );
+    }
   }
 
   createIOServer(port: number, options?: ServerOptions): Server {
     const server = super.createIOServer(port, options) as Server;
-    server.adapter(this.adapterConstructor);
+    if (this.adapterConstructor) {
+      server.adapter(this.adapterConstructor);
+      this.logger.debug('Redis adapter attached to IO server.');
+    }
     return server;
   }
 }

@@ -74,11 +74,14 @@ export class SearchService {
         take: 5,
         select: {
           id: true,
+          verificationLevel: true,
           profile: {
             select: {
               username: true,
               fullName: true,
               avatar: true,
+              thumbnailUrl: true,
+              standardUrl: true,
             },
           },
         },

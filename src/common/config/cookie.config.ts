@@ -5,8 +5,6 @@ import type { CookieOptions } from 'express';
  * Both cookies use httpOnly + sameSite + secure flags for XSS/CSRF protection.
  */
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 /** Base cookie options shared by both tokens. */
 const baseCookieOptions: CookieOptions = {
   httpOnly: true,
@@ -31,8 +29,5 @@ export const refreshTokenCookieOptions: CookieOptions = {
 
 /** Options to clear cookies (used on logout). */
 export const clearCookieOptions: CookieOptions = {
-  httpOnly: true,
-  secure: isProduction,
-  sameSite: 'strict',
-  path: '/',
+  ...baseCookieOptions,
 };

@@ -11,11 +11,14 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 import { UploadsService } from './uploads.service.js';
-import type { UploadedFile } from './interfaces/uploaded-file.interface.js';
+import { UploadedFile } from './interfaces/uploaded-file.interface.js';
+import { Logger } from '@nestjs/common';
 
 /** REST controller for file uploads. Accepts images and videos up to 10 MB. */
 @Controller('uploads')
 export class UploadsController {
+  private readonly logger = new Logger(UploadsController.name);
+
   constructor(private readonly uploadsService: UploadsService) {}
 
   /** Upload a file (image or video, max 10 MB). Returns the public URL and type. */
@@ -33,13 +36,21 @@ export class UploadsController {
           new MaxFileSizeValidator({ maxSize: 500 * 1024 * 1024 }), // 500MB
           new FileTypeValidator({
             fileType:
-              /(jpg|jpeg|png|gif|webp|mp4|mov|quicktime|webm|mp3|wav|m4a)$/,
+              /(jpg|jpeg|png|gif|webp|heic|heif|mp4|mov|quicktime|webm|mp3|wav|m4a)$/,
           }),
         ],
       }),
     )
     file: UploadedFile,
-  ): Promise<{ url: string; type: string }> {
+  ): Promise<{
+    url: string;
+    standardUrl?: string;
+    thumbnailUrl?: string;
+    type: string;
+  }> {
+    this.logger.log(
+      `Incoming POST /uploads: ${file.originalname} (${file.mimetype})`,
+    );
     return await this.uploadsService.uploadFile(file);
   }
 }

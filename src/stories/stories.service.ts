@@ -44,11 +44,10 @@ export class StoriesService {
       data: {
         userId,
         mediaUrl: dto.mediaUrl,
+        standardUrl: dto.standardUrl,
+        thumbnailUrl: dto.thumbnailUrl,
         mediaType: dto.mediaType || 'image',
         isCloseFriendsOnly: dto.isCloseFriendsOnly || false,
-        isPremium: dto.isPremium || false,
-        price: dto.price || null,
-        currency: dto.currency || 'USD',
         expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
         audioId: dto.audioId,
       },
@@ -131,33 +130,11 @@ export class StoriesService {
 
       const filtered = allowedStories.filter((s) => s !== null);
 
-      return Promise.all(
-        filtered.map(async (story) => {
-          if (story && story.isPremium && story.userId !== userId) {
-            const purchase = await this.prisma.purchase.findUnique({
-              where: {
-                buyerId_targetId: { buyerId: userId, targetId: story.id },
-              },
-            });
-            if (!purchase || purchase.status !== 'COMPLETED') {
-              story.mediaUrl = ''; // Censor
-              (story as Record<string, unknown>).isPurchased = false;
-            } else {
-              (story as Record<string, unknown>).isPurchased = true;
-            }
-          }
-          return story;
-        }),
-      );
+      return filtered;
     }
 
-    // Guest cannot view premium media or close friends
-    return stories
-      .filter((s) => !s.isCloseFriendsOnly)
-      .map((story) => {
-        if (story.isPremium) story.mediaUrl = '';
-        return story;
-      });
+    // Guest cannot view close friends
+    return stories.filter((s) => !s.isCloseFriendsOnly);
   }
 
   /**
@@ -213,30 +190,10 @@ export class StoriesService {
     });
 
     if (!currentUserId) {
-      return stories.map((story) => {
-        if (story.isPremium) story.mediaUrl = '';
-        return story;
-      });
+      return stories;
     }
 
-    return Promise.all(
-      stories.map(async (story) => {
-        if (story.isPremium && story.userId !== currentUserId) {
-          const purchase = await this.prisma.purchase.findUnique({
-            where: {
-              buyerId_targetId: { buyerId: currentUserId, targetId: story.id },
-            },
-          });
-          if (!purchase || purchase.status !== 'COMPLETED') {
-            story.mediaUrl = '';
-            (story as Record<string, unknown>).isPurchased = false;
-          } else {
-            (story as Record<string, unknown>).isPurchased = true;
-          }
-        }
-        return story;
-      }),
-    );
+    return stories;
   }
 
   /**

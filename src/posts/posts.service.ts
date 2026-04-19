@@ -4,7 +4,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
-import { Prisma, PostType } from '@prisma/client';
+import { Prisma, PostType, Visibility } from '@prisma/client';
 import { CreatePostDto } from './dto/create-post.dto.js';
 import { UpdatePostDto } from './dto/update-post.dto.js';
 import {
@@ -61,9 +61,7 @@ export class PostsService {
             hideLikes: dto.hideLikes,
             turnOffComments: dto.turnOffComments,
             audioId: dto.audioId,
-            isPremium: dto.isPremium || false,
-            price: dto.price || null,
-            currency: dto.currency || 'USD',
+            visibility: dto.visibility || Visibility.PUBLIC,
           },
           include: {
             user: {
@@ -87,6 +85,8 @@ export class PostsService {
             data: dto.media.map((item, index) => ({
               postId: post.id,
               url: item.url,
+              standardUrl: item.standardUrl,
+              thumbnailUrl: item.thumbnailUrl,
               type: item.type || 'image',
               filter: item.filter,
               altText: item.altText,
@@ -201,12 +201,12 @@ export class PostsService {
       }),
     ]);
 
-    const formattedPosts = await this.censorAndInjectPurchases(
-      posts,
-      undefined,
+    return createPaginatedResult(
+      posts.map((post) => this.injectIsLiked(post, undefined)),
+      total,
+      page,
+      limit,
     );
-
-    return createPaginatedResult(formattedPosts, total, page, limit);
   }
 
   /**
@@ -233,7 +233,7 @@ export class PostsService {
       this.prisma.post.findMany({
         where: {
           type: 'POST',
-          user: { profile: { isPrivate: false } }, // Privacy filter
+          ...this.getGlobalVisibilityFilter(currentUserId),
         },
         skip,
         take: limit,
@@ -257,15 +257,20 @@ export class PostsService {
         },
       }),
       this.prisma.post.count({
-        where: { type: 'POST', user: { profile: { isPrivate: false } } },
+        where: {
+          type: 'POST',
+          ...this.getGlobalVisibilityFilter(currentUserId),
+        },
       }),
     ]);
 
     const formattedPosts = posts.map((post) => {
       const { likes, ...rest } = post;
+      const isLiked =
+        currentUserId && Array.isArray(likes) ? likes.length > 0 : false;
       return {
         ...rest,
-        isLiked: currentUserId ? (likes as any[]).length > 0 : false,
+        isLiked,
       };
     });
 
@@ -286,7 +291,7 @@ export class PostsService {
       this.prisma.post.findMany({
         where: {
           type: 'FRAME',
-          user: { profile: { isPrivate: false } }, // Privacy filter
+          ...this.getGlobalVisibilityFilter(currentUserId),
         },
         skip,
         take: limit,
@@ -310,15 +315,20 @@ export class PostsService {
         },
       }),
       this.prisma.post.count({
-        where: { type: 'FRAME', user: { profile: { isPrivate: false } } },
+        where: {
+          type: 'FRAME',
+          ...this.getGlobalVisibilityFilter(currentUserId),
+        },
       }),
     ]);
 
     const formattedPosts = posts.map((post) => {
       const { likes, ...rest } = post;
+      const isLiked =
+        currentUserId && Array.isArray(likes) ? likes.length > 0 : false;
       return {
         ...rest,
-        isLiked: currentUserId ? (likes as any[]).length > 0 : false,
+        isLiked,
       };
     });
 
@@ -375,11 +385,29 @@ export class PostsService {
       }
     }
 
-    const censoredPosts = await this.censorAndInjectPurchases(
-      [post],
-      currentUserId,
-    );
-    return censoredPosts[0];
+    // Author check is already done above for private profiles.
+    // Post-level visibility check
+    if (
+      post.visibility === Visibility.PRIVATE &&
+      post.userId !== currentUserId
+    ) {
+      throw new ForbiddenException('This post is private');
+    }
+
+    if (
+      post.visibility === Visibility.FOLLOWERS &&
+      post.userId !== currentUserId
+    ) {
+      const isFollower = currentUserId
+        ? await this.isFollowing(currentUserId, post.userId)
+        : false;
+
+      if (!isFollower) {
+        throw new ForbiddenException('This post is for followers only');
+      }
+    }
+
+    return this.injectIsLiked(post, currentUserId) as Record<string, unknown>;
   }
 
   /**
@@ -426,6 +454,7 @@ export class PostsService {
 
     const whereClause: Prisma.PostWhereInput = {
       userId: profile.userId,
+      ...this.getUserProfileVisibilityFilter(profile.userId, currentUserId),
     };
 
     if (type) {
@@ -459,12 +488,12 @@ export class PostsService {
       this.prisma.post.count({ where: whereClause }),
     ]);
 
-    const formattedPosts = await this.censorAndInjectPurchases(
-      posts,
-      currentUserId,
+    return createPaginatedResult(
+      posts.map((post) => this.injectIsLiked(post, currentUserId)),
+      total,
+      page,
+      limit,
     );
-
-    return createPaginatedResult(formattedPosts, total, page, limit);
   }
 
   /**
@@ -522,12 +551,12 @@ export class PostsService {
       }),
     ]);
 
-    const formattedPosts = await this.censorAndInjectPurchases(
-      posts,
-      undefined,
+    return createPaginatedResult(
+      posts.map((post) => this.injectIsLiked(post, undefined)),
+      total,
+      page,
+      limit,
     );
-
-    return createPaginatedResult(formattedPosts, total, page, limit);
   }
 
   /**
@@ -555,6 +584,11 @@ export class PostsService {
         where: {
           userId: { in: followingIds },
           type: 'POST', // Only standard posts in main feed
+          OR: [
+            { visibility: Visibility.PUBLIC },
+            { visibility: Visibility.FOLLOWERS },
+            { userId: userId }, // Own posts are always visible
+          ],
         },
         skip,
         take: limit,
@@ -575,13 +609,24 @@ export class PostsService {
         },
       }),
       this.prisma.post.count({
-        where: { userId: { in: followingIds }, type: 'POST' },
+        where: {
+          userId: { in: followingIds },
+          type: 'POST',
+          OR: [
+            { visibility: Visibility.PUBLIC },
+            { visibility: Visibility.FOLLOWERS },
+            { userId: userId },
+          ],
+        },
       }),
     ]);
 
-    const formattedPosts = await this.censorAndInjectPurchases(posts, userId);
-
-    return createPaginatedResult(formattedPosts, total, page, limit);
+    return createPaginatedResult(
+      posts.map((post) => this.injectIsLiked(post, userId)),
+      total,
+      page,
+      limit,
+    );
   }
 
   /**
@@ -605,7 +650,10 @@ export class PostsService {
 
     return this.prisma.post.update({
       where: { id },
-      data: dto,
+      data: {
+        caption: dto.caption,
+        visibility: dto.visibility as Visibility,
+      },
       include: {
         user: {
           include: {
@@ -658,65 +706,82 @@ export class PostsService {
   }
 
   /**
-   * Helper that acts as a middleware to scrub locked Premium Content (PPV)
-   * from responses unless the user has an active Purchase.
+   * Returns a Prisma filter for global/discovery feeds.
+   * Shows only PUBLIC posts from non-private profiles, plus user's own posts.
    */
-  private async censorAndInjectPurchases(
-    posts: (Record<string, unknown> & {
-      id: string;
-      userId: string;
-      isPremium?: boolean;
-      likes?: { userId: string }[];
-      media?: unknown[];
-      caption?: string | null;
-    })[],
+  private getGlobalVisibilityFilter(
     currentUserId?: string,
-  ) {
-    if (!posts || posts.length === 0) return [];
+  ): Prisma.PostWhereInput {
+    const baseFilter: Prisma.PostWhereInput = {
+      visibility: Visibility.PUBLIC,
+      user: { profile: { isPrivate: false } },
+    };
 
-    const premiumPosts = posts.filter((p) => p.isPremium);
-    const premiumPostIds = premiumPosts.map((p) => p.id);
+    if (!currentUserId) return baseFilter;
 
-    const purchasedPostIds = new Set<string>();
+    return {
+      OR: [baseFilter, { userId: currentUserId }],
+    };
+  }
 
-    if (currentUserId && premiumPostIds.length > 0) {
-      const purchases = await this.prisma.purchase.findMany({
-        where: {
-          buyerId: currentUserId,
-          targetId: { in: premiumPostIds },
-          status: 'COMPLETED',
+  /**
+   * Returns a Prisma filter for a specific user's profile.
+   * Adjusts visibility based on whether the viewer is the author or a follower.
+   */
+  private getUserProfileVisibilityFilter(
+    authorId: string,
+    currentUserId?: string,
+  ): Prisma.PostWhereInput {
+    if (authorId === currentUserId) return {}; // Author sees everything
+
+    const publicFilter: Prisma.PostWhereInput = {
+      visibility: Visibility.PUBLIC,
+    };
+
+    // If not logged in, only see public
+    if (!currentUserId) return publicFilter;
+
+    return {
+      OR: [
+        publicFilter,
+        {
+          visibility: Visibility.FOLLOWERS,
+          user: {
+            followers: {
+              some: {
+                followerId: currentUserId,
+                status: 'ACCEPTED',
+              },
+            },
+          },
         },
-        select: { targetId: true },
-      });
+      ],
+    };
+  }
 
-      purchases.forEach((p: { targetId: string }) =>
-        purchasedPostIds.add(p.targetId),
-      );
-    }
+  private injectIsLiked(post: Record<string, any>, currentUserId?: string) {
+    const { likes, ...rest } = post as { likes?: any[] } & Record<string, any>;
+    const isLiked =
+      currentUserId && Array.isArray(likes) ? likes.length > 0 : false;
 
-    return posts.map((post) => {
-      const { likes, ...rest } = post;
-      const isLiked =
-        currentUserId && likes
-          ? (likes as { userId: string }[]).length > 0
-          : false;
-      const isPurchased = purchasedPostIds.has(post.id);
-      const isAuthor = currentUserId === post.userId;
+    return {
+      ...(rest as Record<string, unknown>),
+      isLiked,
+    };
+  }
 
-      const finalPost: Record<string, unknown> = {
-        ...rest,
-        isLiked,
-        isPurchased,
-      };
-
-      // Censor PPV content if Not Purchased & Not the Author
-      if (post.isPremium && !isPurchased && !isAuthor) {
-        finalPost.media = [];
-        finalPost.caption = null;
-        // Keep price and currency so frontend can render the "Unlock for $5.00" button safely
-      }
-
-      return finalPost;
+  private async isFollowing(
+    followerId: string,
+    followingId: string,
+  ): Promise<boolean> {
+    const follow = await this.prisma.follow.findUnique({
+      where: {
+        followerId_followingId: {
+          followerId,
+          followingId,
+        },
+      },
     });
+    return follow?.status === 'ACCEPTED';
   }
 }
